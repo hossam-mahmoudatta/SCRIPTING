@@ -15,7 +15,7 @@ listDIRX() {
                 ;;
             -a)
                 ls -a
-                echo "\nCurrent DIR longlist is listed"
+                echo "\nCurrent DIR hidden is listed"
                 ;;
             -d)
                 ls -d
@@ -46,7 +46,7 @@ listDIRX() {
                 ;;
             -a)
                 ls -a "$dir"
-                echo "\nCurrent DIR longlist is listed"
+                echo "\nCurrent DIR hidden is listed"
                 ;;
             -d)
                 ls -d "$dir"
