@@ -1,4 +1,6 @@
 #!/usr/bin/zsh
+
+shopt -s extglob;
 export LC_COLLATE=C;
 
 # Will copy now without any arguments
@@ -11,18 +13,20 @@ mycase() {
 
     print "\nLets check your input now!\n"
     
-    case "$inputChar" in
-        +([a-z]))
+    case $inputChar in
+    # Its working now without doing any patterns!
+    # why?
+        ([a-z]))
             echo "\nInputted character is a lowercase letter."
             ;;
-        +([A-Z]))
+        ([A-Z]))
             echo "\nInputted character is an uppercase letter."
             ;;
-        +([0-9]))
+        ([0-9]))
             echo "\nInputted character is a number."
             ;;
         *)
-            echo "Nothing was entered"
+            echo "Invalid Entry"
             ;;
     esac
 }
