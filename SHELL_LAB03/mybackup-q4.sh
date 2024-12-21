@@ -1,17 +1,14 @@
 #!/usr/bin/zsh
 
 # A script to copy a single file
-mychmod() {
+mybackup() {
   
-  for file in $(ls);
+  for file in $(ls /home/$user);
   do
-    sudo chmod +x $file
+    sudo tar -czvf hosabackup.tar.gz $file
   done
+
   print "Check the permissions of your DIR:\n"
-  ls -lR /home/hosa
+  ll /home/hosa
 
 }
-
-
-  # Turned out he need the solution with for loop
-  # sudo chmod +x -R /home/hosa

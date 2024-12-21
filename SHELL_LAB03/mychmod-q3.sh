@@ -3,7 +3,7 @@
 # A script to copy a single file
 mychmod() {
   
-  for file in $(ls);
+  for file in $(ls /home/$user);
   do
     sudo chmod +x $file
   done
