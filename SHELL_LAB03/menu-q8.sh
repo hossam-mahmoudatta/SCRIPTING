@@ -1,21 +1,26 @@
 #!/usr/bin/zsh
 
 # This is a menu
-select choice in 1 2 3
+while true;
 do
-    case $choice in
-        1)
-            ls
-            ;;
-        2)
-            ls -a
-            ;;
-        3)
-            print "Program will exit now"
-            exit
-            ;;
-        *)
-            print "No Valid Entry"
-            ;;
-    esac
+    select choice in "ls" "ls -a" "exit"
+    do
+        case $choice in
+            "ls")
+                ls
+
+                ;;
+            "ls -a")
+                ls -a
+                ;;
+            "exit")
+                print "Program will exit now"
+                # exit 0
+                break 2
+                ;;
+            *)
+                print "No Valid Entry"
+                ;;
+        esac
+    done
 done

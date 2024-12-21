@@ -1,14 +1,20 @@
 #!/usr/bin/zsh
 
-x=5
+# Will copy now without any arguments
+myarr() {
+    if [ -d "$1" ];
+    then
+        echo "$1 is a directory.\n"
+        echo "And its permissions are:\n"
+        ll "$1" | awk '{print $1}'
 
-# Call s2-q2.sh and pass x as an argument
-./s2-q2.sh "$x"
+    elif [ -f "$1" ];
+    then
+        echo "$1 is a file.\n"
+        echo "And its permissions are:\n"
+        ll "$1" | awk '{print $1}'
 
-echo "End of Method 1 Execution\n"
-
-# Export x as an environment variable
-export x
-./s2-q2.sh
-
-echo "End of Method 2 Execution\n"
+    else
+        echo "$1 does not exist or is not a regular file/directory."
+    fi
+}
