@@ -1,26 +1,15 @@
 #!/usr/bin/zsh
 
-# This is a menu
-while true;
-do
-    select choice in "ls" "ls -a" "exit"
-    do
-        case $choice in
-            "ls")
-                ls
 
-                ;;
-            "ls -a")
-                ls -a
-                ;;
-            "exit")
-                print "Program will exit now"
-                # exit 0
-                break 2
-                ;;
-            *)
-                print "No Valid Entry"
-                ;;
-        esac
-    done
-done
+# Function to calculate the square of a number
+mysq() {
+  # Check if exactly one argument is passed
+  if [ $# -eq 1 ];
+  then
+    value=$1
+    square=$((value*value))
+    echo "The square of $value is: $square"
+  else
+    echo "invalid entry"
+  fi
+}
