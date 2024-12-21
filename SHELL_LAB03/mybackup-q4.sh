@@ -2,13 +2,25 @@
 
 # A script to copy a single file
 mybackup() {
+
+  # Define the backup file
+  hosaBackup="/home/hosa/hosabackup.tar.gz"
   
-  for file in $(ls /home/$user);
+  # Create an empty tar archive (or overwrite if exists)
+  sudo touch "$hosaBackup"
+
+  # Loop through all files and directories in /home/hosa
+  for file in /home/hosa/*;
   do
-    sudo tar -czvf hosabackup.tar.gz $file
+    # Check if it's a valid file or directory
+    if [ -e "$file" ];
+    then
+      # Add the file/directory to the tar archive
+      sudo tar -rvf "$hosaBackup" -C /home hosa/$(basename "$file") --append
+    fi
   done
-
-  print "Check the permissions of your DIR:\n"
-  ll /home/hosa
-
+  
+  # Verify the backup file
+  echo "Backup completed. Check for the created backup file:"
+  ls -lh "$hosaBackup"
 }
