@@ -1,17 +1,34 @@
 #!/usr/bin/zsh
 
-# Method 1: Get x from the argument
-if [ $# -ge 1 ];
-then
-  echo "Method 1: Value of x from argument is $1\n"
-else
-  echo "Method 1: Failed! No argument passed\n"
-fi
+myavg() {
+  # Prompt user to enter the size of the array
+  echo "Enter the size of the array: "
+  read size
 
-# Method 2: Get x from the environment variable
-if [ -n "$x" ];
-then
-  echo "Method 2: Value of x from environment variable is $x\n"
-else
-  echo "Method 2: x was not set in the environment\n"
-fi
+  # Create an empty array
+  declare -a arr
+
+  sum=0
+
+
+  # Loop to prompt the user to enter each element
+  for (( i=0; i<size; i++ ))
+  do
+      echo "Enter element $((i+1)):"
+      read element
+      arr+=("$element")
+      sum=$((sum+element))
+  done
+
+  # Print the array elements
+  echo "\nThe array you entered is:\n"
+  for element in "${arr[@]}"
+  do
+      echo "$element"
+  done
+
+  # Calculate the average
+  avg=$((sum/size))
+  print "\nThe Average for the inputs entered is: $avg"
+  print "\nDone"
+}
