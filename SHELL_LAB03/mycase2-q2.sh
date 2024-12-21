@@ -4,26 +4,26 @@ shopt -s extglob;
 export LC_COLLATE=C;
 
 # Will copy now without any arguments
-mycase() {
+mycase2() {
     # Ask for the user's name
     print "Hello!\nWelcome to Hosa's Shell!\n"
-    print "Please enter the character you want to check:"
+    print "Please enter the string you want to check:"
 
-    read inputChar
+    read inputStr
 
     print "\nLets check your input now!\n"
     
-    case $inputChar in
+    case $inputStr in
     # Its working now without doing any patterns!
     # why?
-        ([a-z]))
-            echo "\nInputted character is a lowercase letter."
+        ([a-z])*)
+            echo "\nInputted string is in lowercase."
             ;;
-        ([A-Z]))
-            echo "\nInputted character is an uppercase letter."
+        ([A-Z])*)
+            echo "\nInputted string is in uppercase."
             ;;
-        ([0-9]))
-            echo "\nInputted character is a number."
+        ([0-9])*)
+            echo "\nInputted string is a number."
             ;;
         *)
             echo "Invalid Entry"
