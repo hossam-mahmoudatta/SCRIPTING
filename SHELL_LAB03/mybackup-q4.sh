@@ -4,23 +4,20 @@
 mybackup() {
 
   # Define the backup file
-  hosaBackup="/home/hosa/hosabackup.tar.gz"
+  hosaBackupFile="/home/hosa/hosabackup.tar.gz"
   
   # Create an empty tar archive (or overwrite if exists)
-  sudo touch "$hosaBackup"
+  sudo touch "$backupFiles"
 
   # Loop through all files and directories in /home/hosa
   for file in /home/hosa/*;
   do
-    # Check if it's a valid file or directory
-    if [ -e "$file" ];
-    then
-      # Add the file/directory to the tar archive
-      sudo tar -rvf "$hosaBackup" -C /home hosa/$(basename "$file") --append
-    fi
+    backupFiles="$backupFiles $file"
   done
+
+  sudo tar -czvf "$hosaBackupFile" -C /home $backupFiles
   
   # Verify the backup file
   echo "Backup completed. Check for the created backup file:"
-  ls -lh "$hosaBackup"
+  ls -lh "$hosaBackupFile"
 }
