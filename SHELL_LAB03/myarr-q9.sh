@@ -1,20 +1,23 @@
 #!/usr/bin/zsh
 
-# Will copy now without any arguments
-myarr() {
-    if [ -d "$1" ];
-    then
-        echo "$1 is a directory.\n"
-        echo "And its permissions are:\n"
-        ll "$1" | awk '{print $1}'
+# Prompt user to enter the size of the array
+echo "Enter the size of the array: "
+read size
 
-    elif [ -f "$1" ];
-    then
-        echo "$1 is a file.\n"
-        echo "And its permissions are:\n"
-        ll "$1" | awk '{print $1}'
+# Create an empty array
+declare -a arr
 
-    else
-        echo "$1 does not exist or is not a regular file/directory."
-    fi
-}
+# Loop to prompt the user to enter each element
+for (( i=0; i<size; i++ ))
+do
+    echo "Enter element $((i+1)):"
+    read element
+    arr+=("$element")
+done
+
+# Print the array elements
+echo "The array you entered is: "
+for element in "${arr[@]}"
+do
+    echo "$element"
+done
