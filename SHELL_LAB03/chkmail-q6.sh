@@ -1,37 +1,35 @@
 #!/bin/bash
 
 chkmail() {
-  # A test to check if the mail template exists
-  if [ ! -f "mtemplate" ];
-  then
-    echo "Mail template file 'mtemplate' not found!"
-    exit 1
-  fi
 
-  # Get the hostname
-  hostname=$(hostname)
+    # Define the username whose mail we want to check
+    USER="$USER"  # You can replace 'root' with any other username
 
-  # Read mail body from the file
-  mailBody=$(cat mtemplate)
+    # Define the mail file location
+    mailFile="/var/mail/$USER"
 
-  # Get a list of all valid users
-  users=$(cut -d: -f1 /etc/passwd)
-
-  # Define the email subject
-  subject="System Wide Notification from Hosa"
-
-  # Loop through each user and send the mail
-  for user in $users;
-  do
-    # Check if the user has a valid home directory (to exclude system accounts)
-    # home_dir=$(getent passwd "$user" | cut -d: -f6)
-    
-    homeDIR=$(awk -F: -v user="$user" '$1 == user {print $6}' /etc/passwd)
-
-    if [ -d "$homeDIR" ]; then
-      email="${user}@${hostname}"
-      echo "$mailBody" | sudo mail -s "$subject" "$email"
-      echo "Mail sent to $email"
+    # Check if the mail file exists
+    if [ ! -f "$mailFile" ];
+    then
+        echo "Mail file for $USER does not exist at $mailFile"
+        exit 1
     fi
-  done
+
+    # Check for new mail every 10 seconds
+    while true;
+    do
+        # Get the number of lines in the mail file (if non-zero, there are new mails)
+        mailCount=$(wc -l < "$mailFile")
+
+        # If there are new lines (new mail)
+        if [ "$mailCount" -gt 0 ];
+        then
+            echo "You have new mail for $USER!"
+            mail -f "$mailFile"  # This will show the new mail in the mailbox
+        else
+            echo "No new mail for $USER"
+        fi
+        # Wait for 10 seconds before checking again
+        sleep 10
+    done
 }
