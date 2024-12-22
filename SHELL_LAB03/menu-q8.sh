@@ -6,7 +6,7 @@ do
     select choice in "ls" "ls -a" "exit"
     do
         case $choice in
-            "ls")
+        "ls")
                 ls
 
                 ;;
