@@ -1,4 +1,4 @@
 
 num = 10
-print("\nThe number is: ", num)
+print("\nThe number iss: ", num)
 print(num)
