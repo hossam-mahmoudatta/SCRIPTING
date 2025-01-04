@@ -11,13 +11,15 @@ def signUpAPI():
     userFName = verifyString("Enter First Name:")
     userLName = verifyString("Enter Last Name:")
     userEmail = verifyEmail("Enter Email:")
-    userPassword = 
+    userPassword = verifyPassword("Enter your Password:")
+    
     title = askforString("Enter title")
     bookdata = {
         "id": generate_id(),
         "title": title,
         "no_of_pages": no_of_pages
     }
+    
     # print(bookdata)
     ## title , no_of_pages
     # I need to save the data to a file
