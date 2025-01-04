@@ -40,4 +40,15 @@ def verifyPassword(message="Enter your password: ", confirmMessage="Confirm your
             return password
         else:
             print("Passwords do not match. Please try again.")
+            
+            
+def verifyMobile(message="Enter your Mobile number: "):
+    while True:
+        mobileNumber = input(message)
 
+        # Check if the number starts with a valid country code
+        if any(mobileNumber.startswith("+20")) and mobileNumber[1:].isdigit():
+            print("Mobile number verified successfully!")
+            return mobileNumber
+        else:
+            print("Invalid mobile number! Please enter a valid number with Egypt's country code.")

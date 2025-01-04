@@ -8,16 +8,19 @@ def signUpMsg():
 
 def signUpAPI():
     print("\nAdd User Info:")
-    userFName = verifyString("Enter First Name:")
-    userLName = verifyString("Enter Last Name:")
-    userEmail = verifyEmail("Enter Email:")
-    userPassword = verifyPassword("Enter your Password:")
+    userFName = verifyString("Enter First Name: ")
+    userLName = verifyString("Enter Last Name: ")
+    userEmail = verifyEmail("Enter Email: ")
+    userPassword = verifyPassword("Enter your Password: ")
+    userMobile = verifyMobile("Enter your Phone Number: ")
     
     title = askforString("Enter title")
-    bookdata = {
+    userData = {
         "id": generate_id(),
-        "title": title,
-        "no_of_pages": no_of_pages
+        "fname": title,
+        "lname": no_of_pages,
+        "email": user_email,
+        "password": user_password 
     }
     
     # print(bookdata)
