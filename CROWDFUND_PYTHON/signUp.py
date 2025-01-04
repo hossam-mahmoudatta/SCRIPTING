@@ -2,7 +2,7 @@
 # Creating a Crowd Funding Application
 
 def welcomeMsg():
-    print("\nWelcome to Hosa Crowd Funding App:")
+    print("\nHosa Crowd Funding App:")
 
 def showMainMenu():
     print("\nMENU:")
@@ -24,7 +24,9 @@ def mainMenu():
             break
         else:
             print("\nInvalid Choice")
-
+                
+        # if choice.isdigit():
+        #     choice = int(choice)
 # Run the program
 welcomeMsg()
 mainMenu()
