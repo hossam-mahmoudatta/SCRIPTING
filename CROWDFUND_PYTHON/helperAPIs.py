@@ -47,7 +47,7 @@ def verifyMobile(message="Enter your Mobile number: "):
         mobileNumber = input(message)
 
         # Check if the number starts with a valid country code
-        if any(mobileNumber.startswith("+20")) and mobileNumber[1:].isdigit():
+        if mobileNumber.startswith("+20") and mobileNumber[1:].isdigit():
             print("Mobile number verified successfully!")
             return mobileNumber
         else:
