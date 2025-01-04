@@ -10,7 +10,8 @@ def signUpAPI():
     print("\nAdd User Info:")
     userFName = verifyString("Enter First Name:")
     userLName = verifyString("Enter Last Name:")
-    userEmail = verifyString("Enter Last Name:")
+    userEmail = verifyEmail("Enter Email:")
+    userPassword = 
     title = askforString("Enter title")
     bookdata = {
         "id": generate_id(),
