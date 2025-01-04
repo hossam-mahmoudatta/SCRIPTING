@@ -4,11 +4,13 @@
 from helperAPIs import *
 
 def signUpMsg():
-    print("\nHosa Crowd Funding App\nSign In Page")
+    print("\nHosa Crowd Funding App\nSign Up Page")
 
 def signUpAPI():
     print("\nAdd User Info:")
-    no_of_pages = askforInt("Enter number of pages")
+    userFName = verifyString("Enter First Name:")
+    userLName = verifyString("Enter Last Name:")
+    userEmail = verifyString("Enter Last Name:")
     title = askforString("Enter title")
     bookdata = {
         "id": generate_id(),
