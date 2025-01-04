@@ -1,6 +1,8 @@
 # Hossam Mahmoud
 # Creating a Crowd Funding Application
 
+from signUp import *
+
 def welcomeMsg():
     print("\nWelcome to Hosa Crowd Funding App:")
 
@@ -17,6 +19,8 @@ def mainMenu():
         choice = input("Enter your choice: ")
         if choice == '1':
             print("\nYou'll sign up now.")
+            signUpMsg()
+            signUpAPI()
         elif choice == '2':
             print("\nYou can sign in now.")
         elif choice == '3':
