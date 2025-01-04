@@ -1,10 +1,28 @@
 # Hossam Mahmoud
 # Creating a Crowd Funding Application
 
-def welcomeMsg():
-    print("\nHosa Crowd Funding App:")
+from helperAPIs import *
 
-def showMainMenu():
+def signUpMsg():
+    print("\nHosa Crowd Funding App\nSign In Page")
+
+def signUpAPI():
+    print("\nAdd User Info:")
+    no_of_pages = askforInt("Enter number of pages")
+    title = askforString("Enter title")
+    bookdata = {
+        "id": generate_id(),
+        "title": title,
+        "no_of_pages": no_of_pages
+    }
+    # print(bookdata)
+    ## title , no_of_pages
+    # I need to save the data to a file
+    saved = save_book(bookdata)
+    if saved:
+        print("----------books saved----------")
+        
+        
     print("\nMENU:")
     print("1. Create an Account")
     print("2. Already a user? Sign in.")
