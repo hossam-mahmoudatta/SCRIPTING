@@ -8,7 +8,7 @@ Run the MAIN_MENU_API.py file and we'll take care of the rest for you.
 
 
 
-
+<!-- 
 
 
 
@@ -23,4 +23,4 @@ when the gui starts:
 
 3.2 sign in: will sign in by checking the database for created users
 4. after sign in or sign up, it will show the inner main menu
-5. the main menu will have 3 options: dashboard, profile, logout
+5. the main menu will have 3 options: dashboard, profile, logout -->
