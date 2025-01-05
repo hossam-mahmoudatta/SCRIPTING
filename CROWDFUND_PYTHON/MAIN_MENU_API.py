@@ -1,7 +1,7 @@
 # Hossam Mahmoud
 # Creating a Crowd Funding Application
 
-from signUp import *
+from SIGN_UP_API import *
 
 def welcomeMsg():
     print("\nWelcome to Hosa Crowd Funding App:")

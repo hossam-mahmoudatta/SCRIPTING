@@ -1,16 +1,16 @@
 """
-
     any operation with files --
 """
 
 
-""" if you have json file --> architecture --> array of object  [{},{}, {}]
+"""
+    if you have json file --> architecture --> array of object  [{},{}, {}]
     and you need to add new object to the file ??
     it is better to read the file data into a list 
     save new object to the list 
     then write the list the file 
-
 """
+
 import json
 
 def read_all_books():
@@ -41,7 +41,6 @@ def save_book(book):
     saved = save_all_books(old_data)
     return saved
 
-
 #######################################
 
 def generate_id():
@@ -58,11 +57,3 @@ def generate_id():
         return 1
     else:
         return id
-
-
-
-
-
-
-
-

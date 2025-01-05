@@ -1,7 +1,7 @@
 # Hossam Mahmoud
 # Creating a Crowd Funding Application
 
-from helperAPIs import *
+from CROWDFUND_PYTHON.VERIFICATION_APIs import *
 
 def signUpMsg():
     print("\nHosa Crowd Funding App\nSign Up Page")
@@ -15,7 +15,7 @@ def signUpAPI():
     userMobile = verifyMobile("Enter your Phone Number: ")
     
     userData = {
-        "id": generate_id(),
+        # "id": generateID(),
         "fname": userFName,
         "lname": userLName,
         "email": userEmail,
@@ -29,24 +29,3 @@ def signUpAPI():
     # saved = save_book(bookdata)
     # if saved:
     #     print("----------User Info Saved!----------")
-        
-
-
-# def mainMenu():
-#     menuItems = []  # List to store items
-#     while True:
-#         showMainMenu()
-#         choice = input("Enter your choice: ")
-#         if choice == '1':
-#             print("\nYou'll sign up now.")
-#         elif choice == '2':
-#             print("\nYou can sign in now.")
-#         elif choice == '3':
-#             print("\nYou'll exit now.")
-#             break
-#         else:
-#             print("\nInvalid Choice")
-                
-#         # if choice.isdigit():
-#         #     choice = int(choice)
-
