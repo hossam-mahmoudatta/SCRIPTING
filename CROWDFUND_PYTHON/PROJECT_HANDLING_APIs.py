@@ -1,71 +1,113 @@
+# Hossam Mahmoud
+# Creating a Crowd Funding Application
 
-import json, os, datetime
+from VERIFICATION_APIs import *
+from USER_HANDLING_APIs import *
+from CROWDFUND_PYTHON.PROJECT import *
 
-###############################################
-# Setting the path where the DBs will be created
-MAIN_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_DIR = os.path.join(MAIN_DIR, 'DATABASES')
+###########################################
+###########################################
 
-# Ensure the "databases" folder exists
-os.makedirs(DB_DIR, exist_ok=True)
+def projectMsg():
+    print("\nHosa Crowd Funding App\nInitiate a Project")
 
-USER_ID_DB = os.path.join(DB_DIR, 'USER_ID_DB.json')
-USER_DB = os.path.join(DB_DIR,  'USER_DB.json')
-###############################################
-# Load existing user ID data
-def readUserID():
-    if os.path.exists(USER_ID_DB):
-        with open(USER_ID_DB, 'r') as file:
-            return json.load(file)
+###########################################
+###########################################
+
+def createProject(userData):
+    print("\nAdd Project Info:")
+    # print(userData) 
+    
+    # Ask for project details
+    projectTitle = input("Enter Project Title: ")
+    projectDescription = input("Enter Project Description: ")
+    projectFund = float(input("Enter Target Fund: "))
+    projectStartDate = input("Enter Project's Start Date (YYYY-MM-DD): ")
+    projectEndDate = input("Enter Project's End Date (YYYY-MM-DD): ")
+    
+    # Create the new project with an ID (incremental)
+    projectID = len(userData["projects"]) + 1  # Create an incremental ID
+    projectData = {
+        "id": projectID,
+        "title": projectTitle,
+        "description": projectDescription,
+        "target_fund": projectFund,
+        "start_date": projectStartDate,
+        "end_date": projectEndDate
+    }
+    
+    # Add the new project to the user's projects list
+    userData["projects"].append(projectData)
+
+    # Save the updated user data to the file
+    saveUserDB(userData)
+
+    print(f"\nProject '{projectTitle}' added successfully!")
+
+###########################################
+###########################################
+
+def listProjects(userData):
+    if userData["projects"]:
+        for project in userData["projects"]:
+            print(f"""
+                #########################\n
+                ID: {project['id']}\n
+                Title: {project['title']}\n
+                Description: {project['description']}\n
+                Target Fund: {project['target_fund']}\n
+                Start Date: {project['start_date']}\n
+                End Date: {project['end_date']}\n
+                #########################\n""")
     else:
-        return {}
+        print("No projects were found.")
 
+###########################################
+###########################################
 
-# Save the updated user ID data
-def saveUserID(userIDData):
-    with open(USER_ID_DB, 'w') as file:
-        json.dump(userIDData, file, indent=4)
-
-
-def generateUserID():
-    # Load existing user ID data
-    userIDData = readUserID()
+def editProject(userData):
+    # Checks if this user has any projects or not
+    if not userData["projects"]:
+        print("No projects found.")
+        return
     
-    # Get today's date in YYYYMMDD format
-    todayDate = datetime.datetime.now().strftime("%Y%m%d")
+    print("\nSelect a project to edit:")
+    for project in userData["projects"]:
+        print(f"ID: {project['id']} - Title: {project['title']}")
     
-    # Initialize the count for today's date if not already present
-    if todayDate not in userIDData:
-        userIDData[todayDate] = 1
-    else:
-        userIDData[todayDate] += 1
+    # Get the project ID to edit
+    try:
+        projectID = int(input("Enter project ID to edit: "))
+        project = None
+        for proj in userData["projects"]:
+            if proj["id"] == projectID:
+                project = proj
+                break
+        
+        # Prompts the user which field they want to edit
+        print(f"Editing Project: {project['title']}")
+        project['title'] = input(f"Enter new title (current: {project['title']}): ") or project['title']
+        project['description'] = input(f"Enter new description (current: {project['description']}): ") or project['description']
+        project['target_fund'] = float(input(f"Enter new target fund (current: {project['target_fund']}): ") or project['target_fund'])
+        project['start_date'] = input(f"Enter new start date (current: {project['start_date']}): ") or project['start_date']
+        project['end_date'] = input(f"Enter new end date (current: {project['end_date']}): ") or project['end_date']
+        
+        # Save the updated user data
+        saveUserDB(userData)
+        
+        # Printing the newly added project
+        print(f"""
+                #########################\n
+                ID: {project['id']}\n
+                Title: {project['title']}\n
+                Description: {project['description']}\n
+                Target Fund: {project['target_fund']}\n
+                Start Date: {project['start_date']}\n
+                End Date: {project['end_date']}\n
+                #########################\n""")
+        
+        # Confirms the newly updated project
+        print(f"\nProject '{project['title']}' updated successfully!")
     
-    # Generate the ID by combining the date and the user number
-    userNumber = str(userIDData[todayDate]).zfill(3)  # Pads the number with leading zeros
-    userID = f"{todayDate}{userNumber}"
-    
-    # Save the updated user ID data
-    saveUserID(userIDData)
-    
-    # Return the unique ID
-    return userID
-
-###############################################
-###############################################
-
-# Load existing user ID data from the file (if it exists)
-def readUserDB():
-    if os.path.exists(USER_DB):
-        # Read about benefits of using with .. as
-        with open(USER_DB, 'r') as file:
-            return json.load(file)
-    else:
-        return {}
-
-# Save the updated user ID data to the file
-def saveUserDB(userData):
-    existingUsers = readUserDB()
-    # Use the username as the key
-    existingUsers[userData['user']] = userData
-    with open(USER_DB, 'w') as file:
-        json.dump(existingUsers, file, indent=4)
+    except ValueError:
+        print("Invalid input. Please enter a valid Project ID.")

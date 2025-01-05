@@ -17,7 +17,7 @@ def mainMenu():
     menuItems = []  # List to store items
     while True:
         showMainMenu()
-        choice = input("Enter your choice: ")
+        choice = input("\nEnter your choice: ")
         if choice == '1':
             print("\nYou'll be directed to the sign up page...")
             signUpMsg()
