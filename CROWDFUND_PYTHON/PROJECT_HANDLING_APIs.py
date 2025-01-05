@@ -3,8 +3,8 @@ import json, os, datetime
 
 ###############################################
 # Setting the path where the DBs will be created
-PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_DIR = os.path.join(PROJECT_DIR, 'DATABASES')
+MAIN_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_DIR = os.path.join(MAIN_DIR, 'DATABASES')
 
 # Ensure the "databases" folder exists
 os.makedirs(DB_DIR, exist_ok=True)

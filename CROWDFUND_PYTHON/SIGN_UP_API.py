@@ -2,7 +2,7 @@
 # Creating a Crowd Funding Application
 
 from VERIFICATION_APIs import *
-from FILE_HANDLING_APIs import *
+from USER_HANDLING_APIs import *
 
 def signUpMsg():
     print("\nHosa Crowd Funding App\nSign Up Page")
@@ -39,7 +39,8 @@ def signUpAPI():
         "user": userName,
         "email": userEmail,
         "password": userPassword,
-        "mobile": userMobile
+        "mobile": userMobile,
+        "projects": []
     }
     
     print(f"\nUser: {userName} has been successfully registered!")

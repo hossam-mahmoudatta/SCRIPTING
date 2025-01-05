@@ -25,5 +25,15 @@
         "email": "mah@gmail.com",
         "password": "123",
         "mobile": "+201039393"
+    },
+    "atta": {
+        "id": "20250105004",
+        "fname": "hos",
+        "lname": "mah",
+        "user": "atta",
+        "email": "atta@gmail.com",
+        "password": "123",
+        "mobile": "+20129448",
+        "projects": []
     }
 }

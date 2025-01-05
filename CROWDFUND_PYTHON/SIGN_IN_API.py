@@ -2,7 +2,7 @@
 # Creating a Crowd Funding Application
 
 from VERIFICATION_APIs import *
-from FILE_HANDLING_APIs import *
+from USER_HANDLING_APIs import *
 from DASHBOARD import *
 
 def signInMsg():
@@ -23,7 +23,7 @@ def signInAPI():
                 if existingUsers[userName]['password'].strip() == userPassword:
                     print("Login Successful!")
                     userData = existingUsers[userName]
-                    userDashboard(userData)
+                    userDashboard(userData) # type: ignore
                     # break
                 else:
                     print("Error: Incorrect Password. Please try again.")
