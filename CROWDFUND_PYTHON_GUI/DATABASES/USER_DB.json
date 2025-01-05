@@ -1,0 +1,41 @@
+{
+    "hosa": {
+        "id": "20250105001",
+        "fname": "Hossam",
+        "lname": "Mahmoud",
+        "user": "hosa",
+        "email": "hosa@gmail.com",
+        "password": "123",
+        "mobile": "+201097666269",
+        "projects": [
+            {
+                "id": 1,
+                "title": "Hossam 1st Project",
+                "description": "This i sht efirst project hossam creates",
+                "target_fund": 320000.0,
+                "start_date": "2024-02-19",
+                "end_date": "2024-02-23"
+            }
+        ]
+    },
+    "fatma": {
+        "id": "20250105002",
+        "fname": "Fatma",
+        "lname": "Mahmoud",
+        "user": "fatma",
+        "email": "fatma@gmail.com",
+        "password": "123",
+        "mobile": "+2010723232",
+        "projects": []
+    },
+    "zizo": {
+        "id": "20250105003",
+        "fname": "Zeyad",
+        "lname": "Tarek",
+        "user": "zizo",
+        "email": "zizo@gmail.com",
+        "password": "123",
+        "mobile": "+20123124",
+        "projects": []
+    }
+}
