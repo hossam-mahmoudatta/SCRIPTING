@@ -18,13 +18,14 @@ def mainMenu():
         showMainMenu()
         choice = input("Enter your choice: ")
         if choice == '1':
-            print("\nYou'll sign up now.")
+            print("\nYou'll be directed to the sign up page...")
             signUpMsg()
             signUpAPI()
         elif choice == '2':
-            print("\nYou can sign in now.")
+            print("\nYou'll be directed to the sign in page...")
         elif choice == '3':
             print("\nYou'll exit now.")
+            print("\nHave a nice day!")
             break
         else:
             print("\nInvalid Choice")

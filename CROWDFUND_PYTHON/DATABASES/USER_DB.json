@@ -1,0 +1,29 @@
+{
+    "hosa": {
+        "id": "20250105001",
+        "fname": "Hossam",
+        "lname": "Mahmoud",
+        "user": "hosa",
+        "email": "hos@gmail.com",
+        "password": "123",
+        "mobile": "+20100000"
+    },
+    "fatoma": {
+        "id": "20250105002",
+        "fname": "Fa",
+        "lname": "Ma",
+        "user": "fatoma",
+        "email": "fatoma@gmail.com",
+        "password": "123",
+        "mobile": "+20109897987"
+    },
+    "mah": {
+        "id": "20250105003",
+        "fname": "Mah",
+        "lname": "Atta",
+        "user": "mah",
+        "email": "mah@gmail.com",
+        "password": "123",
+        "mobile": "+201039393"
+    }
+}

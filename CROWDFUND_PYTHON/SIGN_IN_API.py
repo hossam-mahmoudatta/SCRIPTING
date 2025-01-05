@@ -4,11 +4,11 @@
 from VERIFICATION_APIs import *
 from FILE_HANDLING_APIs import *
 
-def signUpMsg():
-    print("\nHosa Crowd Funding App\nSign Up Page")
+def signInMsg():
+    print("\nHosa Crowd Funding App\nSign In Page")
 
-def signUpAPI():
-    print("\nAdd User Info:")
+def signInAPI():
+    print("\nEnter your Login Info:")
     # Checks if the user that i will create exists or not.
     existingUsers = readUserDB()
     userID = generateUserID()
@@ -18,17 +18,11 @@ def signUpAPI():
         if userName in existingUsers:
             print("Error: Username already exists. Please choose a different one.")
         else:
-            break
-        
-    while True:
-        userEmail = verifyEmail("Enter Email: ")
-        if any(user['email'] == userEmail for user in existingUsers.values()):
-            print("Error: Email already exists. Please choose a different one.")
-        else:
-            break    
+            break       
     
     userFName = verifyString("Enter First Name: ")
     userLName = verifyString("Enter Last Name: ")
+    userEmail = verifyEmail("Enter Email: ")
     userPassword = verifyPassword("Enter your Password: ")
     userMobile = verifyMobile("Enter your Phone Number: ")
     
