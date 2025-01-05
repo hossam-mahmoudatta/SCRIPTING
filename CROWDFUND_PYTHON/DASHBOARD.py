@@ -3,7 +3,7 @@
 
 from SIGN_UP_API import *
 from SIGN_IN_API import *
-from CROWDFUND_PYTHON.PROJECT_HANDLING_APIs import *
+from PROJECT_HANDLING_APIs import *
 
 def dashboardMsg():
     print("\nHosa Crowd Funding App\nDashboard")

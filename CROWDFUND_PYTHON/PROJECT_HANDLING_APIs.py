@@ -3,7 +3,6 @@
 
 from VERIFICATION_APIs import *
 from USER_HANDLING_APIs import *
-from CROWDFUND_PYTHON.PROJECT import *
 
 ###########################################
 ###########################################
@@ -71,13 +70,13 @@ def editProject(userData):
         print("No projects found.")
         return
     
-    print("\nSelect a project to edit:")
+    print("\nSelect a project to edit:\n")
     for project in userData["projects"]:
         print(f"ID: {project['id']} - Title: {project['title']}")
     
     # Get the project ID to edit
     try:
-        projectID = int(input("Enter project ID to edit: "))
+        projectID = int(input("\nEnter project ID to edit: "))
         project = None
         for proj in userData["projects"]:
             if proj["id"] == projectID:
@@ -85,7 +84,7 @@ def editProject(userData):
                 break
         
         # Prompts the user which field they want to edit
-        print(f"Editing Project: {project['title']}")
+        print(f"Editing Project: {project['title']}\n")
         project['title'] = input(f"Enter new title (current: {project['title']}): ") or project['title']
         project['description'] = input(f"Enter new description (current: {project['description']}): ") or project['description']
         project['target_fund'] = float(input(f"Enter new target fund (current: {project['target_fund']}): ") or project['target_fund'])
