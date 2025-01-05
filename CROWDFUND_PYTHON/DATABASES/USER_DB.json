@@ -42,14 +42,6 @@
                 "target_fund": 5000.0,
                 "start_date": "2024-01-10",
                 "end_date": "2024-01-20"
-            },
-            {
-                "id": 2,
-                "title": "Project 2",
-                "description": "This is a demo project 2",
-                "target_fund": 250000.0,
-                "start_date": "2024-01-11",
-                "end_date": "2024-01-14"
             }
         ]
     }

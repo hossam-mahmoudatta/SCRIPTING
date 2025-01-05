@@ -24,8 +24,9 @@ def signInAPI():
                     print("Login Successful!")
                     userData = existingUsers[userName]
                     userDashboard(userData) # type: ignore
-                    # break
+                    break
                 else:
                     print("Error: Incorrect Password. Please try again.")
         else:
             print("Username doesn't exist! Try again.\n")
+        break

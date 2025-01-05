@@ -41,16 +41,10 @@ def userDashboard(userData):
             
         elif choice == '5':
             print("\nSearch for a Project...")
-            projectMsg()
-            createProject(userData)
-            
+            print("\nComing Soon...")
+
         elif choice == '6':
             print("\nHeading back to the Main Menu...")
-            signInMsg()
-            signInAPI()
+            break
         else:
             print("\nInvalid Choice")
-
-# Run the program
-# dashboardMsg()
-# userDashboard(userData)
