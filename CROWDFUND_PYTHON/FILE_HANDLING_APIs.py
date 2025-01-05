@@ -21,23 +21,23 @@ def saveUserID(userID):
         
 def generateUserID(username):
     # Load the existing user IDs
-    user_ids_per_date = load_user_ids()
+    currentUserIDs = readUserID()
     
     # Get today's date in YYYYMMDD format
     todayDate = datetime.datetime.now().strftime("%Y%m%d")
     
     # Initialize the count for today's date if not already present
-    if today_date not in user_ids_per_date:
-        user_ids_per_date[today_date] = 1
+    if todayDate not in currentUserIDs:
+        currentUserIDs[todayDate] = 1
     else:
-        user_ids_per_date[today_date] += 1
+        currentUserIDs[todayDate] += 1
     
     # Generate the ID by combining the date and the user number
-    user_number = str(user_ids_per_date[today_date]).zfill(3)  # Pads the number with leading zeros
-    user_id = f"{today_date}{user_number}"
+    userNumber = str(currentUserIDs[todayDate]).zfill(3)  # Pads the number with leading zeros
+    userID = f"{todayDate}{userNumber}"
     
     # Save the updated user ID data
-    save_user_ids(user_ids_per_date)
+    saveUserID(currentUserIDs)
     
     # Return the unique ID
-    return user_id
+    return userID
