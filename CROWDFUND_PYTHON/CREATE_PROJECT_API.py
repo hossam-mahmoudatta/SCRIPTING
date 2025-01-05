@@ -4,11 +4,11 @@
 from VERIFICATION_APIs import *
 from FILE_HANDLING_APIs import *
 
-def signUpMsg():
-    print("\nHosa Crowd Funding App\nSign Up Page")
+def projectMsg():
+    print("\nHosa Crowd Funding App\nInitiate a Project")
 
-def signUpAPI():
-    print("\nAdd User Info:")
+def createProject():
+    print("\nAdd Project Info:")
     # Checks if the user that i will create exists or not.
     existingUsers = readUserDB()
     userID = generateUserID()
