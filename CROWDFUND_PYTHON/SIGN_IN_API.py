@@ -22,7 +22,8 @@ def signInAPI():
                 userPassword = input("Password: ")
                 if existingUsers[userName]['password'].strip() == userPassword:
                     print("Login Successful!")
-                    userDashboard()
+                    userData = existingUsers[userName]
+                    userDashboard(userData)
                     # break
                 else:
                     print("Error: Incorrect Password. Please try again.")

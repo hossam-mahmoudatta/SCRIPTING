@@ -10,7 +10,7 @@ def projectMsg():
 def createProject():
     print("\nAdd Project Info:")
     # Checks if the user that i will create exists or not.
-    existingUsers = readUserDB()
+    existingProjects = readUserDB()
     userID = generateUserID()
     
     while True:
