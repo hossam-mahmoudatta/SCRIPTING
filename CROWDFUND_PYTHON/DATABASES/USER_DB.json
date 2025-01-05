@@ -37,5 +37,24 @@
         "password": "123",
         "mobile": "+20123124",
         "projects": []
+    },
+    "shosha": {
+        "id": "20250105004",
+        "fname": "Shaimaa",
+        "lname": "Gamal",
+        "user": "shosha",
+        "email": "shosha@gmail.com",
+        "password": "123",
+        "mobile": "+20123432",
+        "projects": [
+            {
+                "id": 1,
+                "title": "Shosha Test 01",
+                "description": "We are testing creating a project in shosha's account",
+                "target_fund": 14000.0,
+                "start_date": "2024-10-13",
+                "end_date": "2024-10-22"
+            }
+        ]
     }
 }
