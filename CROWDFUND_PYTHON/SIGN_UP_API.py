@@ -1,8 +1,8 @@
 # Hossam Mahmoud
 # Creating a Crowd Funding Application
 
-from CROWDFUND_PYTHON.VERIFICATION_APIs import *
-from CROWDFUND_PYTHON.FILE_HANDLING_APIs import *
+from VERIFICATION_APIs import *
+from FILE_HANDLING_APIs import *
 
 def signUpMsg():
     print("\nHosa Crowd Funding App\nSign Up Page")
