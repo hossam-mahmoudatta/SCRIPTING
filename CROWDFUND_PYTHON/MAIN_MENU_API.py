@@ -2,6 +2,7 @@
 # Creating a Crowd Funding Application
 
 from SIGN_UP_API import *
+from SIGN_IN_API import *
 
 def welcomeMsg():
     print("\nWelcome to Hosa Crowd Funding App:")
@@ -23,6 +24,8 @@ def mainMenu():
             signUpAPI()
         elif choice == '2':
             print("\nYou'll be directed to the sign in page...")
+            signInMsg()
+            signInAPI()
         elif choice == '3':
             print("\nYou'll exit now.")
             print("\nHave a nice day!")

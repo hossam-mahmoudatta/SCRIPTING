@@ -11,36 +11,19 @@ def signInAPI():
     print("\nEnter your Login Info:")
     # Checks if the user that i will create exists or not.
     existingUsers = readUserDB()
-    userID = generateUserID()
     
     while True:
-        userName = input("Enter a Unique Username: ")
+        userName = input("Username: ")
         if userName in existingUsers:
-            print("Error: Username already exists. Please choose a different one.")
+            print("Username Valid! Enter your Password now:\n")
+            
+            while True:
+                userPassword = input("Password: ")
+                if existingUsers[userName]['password'].strip() == userPassword:
+                    print("Login Successful!")
+                    userDashboard()
+                    # break
+                else:
+                    print("Error: Incorrect Password. Please try again.")
         else:
-            break       
-    
-    userFName = verifyString("Enter First Name: ")
-    userLName = verifyString("Enter Last Name: ")
-    userEmail = verifyEmail("Enter Email: ")
-    userPassword = verifyPassword("Enter your Password: ")
-    userMobile = verifyMobile("Enter your Phone Number: ")
-    
-    userData = {
-        "id": userID,
-        "fname": userFName,
-        "lname": userLName,
-        "user": userName,
-        "email": userEmail,
-        "password": userPassword,
-        "mobile": userMobile
-    }
-    
-    print(f"\nUser: {userName} has been successfully registered!")
-    print("\nGenerated User ID: ", userID)
-    print("\n", userData)
-    
-    # I need to save the data to a file
-    saved = saveUserDB(userData)
-    if saved:
-        print("----------User Info Saved!----------")
+            print("Username doesn't exist! Try again.\n")
