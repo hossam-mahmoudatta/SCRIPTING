@@ -1,3 +1,18 @@
+<h1>How to Run this project?</h1>
+Run the MAIN_MENU_API.py file and we'll take care of the rest for you.
+
+
+
+
+
+
+
+
+
+
+
+
+
 So how to think about this project?
 
 I can create it in a gui that will display everything
