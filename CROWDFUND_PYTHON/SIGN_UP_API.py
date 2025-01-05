@@ -2,6 +2,7 @@
 # Creating a Crowd Funding Application
 
 from CROWDFUND_PYTHON.VERIFICATION_APIs import *
+from CROWDFUND_PYTHON.FILE_HANDLING_APIs import *
 
 def signUpMsg():
     print("\nHosa Crowd Funding App\nSign Up Page")
@@ -15,7 +16,7 @@ def signUpAPI():
     userMobile = verifyMobile("Enter your Phone Number: ")
     
     userData = {
-        # "id": generateID(),
+        "id": generateUserID(),
         "fname": userFName,
         "lname": userLName,
         "email": userEmail,
