@@ -9,9 +9,12 @@ def dashboardMsg():
 
 def showMainMenu():
     print("\nMENU:")
-    print("1. Create an Account")
-    print("2. Already a user? Sign in.")
-    print("3. Exit")
+    print("1. Create a Project")
+    print("2. View Project")
+    print("3. Edit Project")
+    print("4. Delete Project")
+    print("5. Search")
+    print("6. Back to Main Menu")
 
 def mainMenu():
     menuItems = []  # List to store items
@@ -19,7 +22,7 @@ def mainMenu():
         showMainMenu()
         choice = input("Enter your choice: ")
         if choice == '1':
-            print("\nYou'll be directed to the sign up page...")
+            print("\nYou'll be directed to setup your project...")
             signUpMsg()
             signUpAPI()
         elif choice == '2':
