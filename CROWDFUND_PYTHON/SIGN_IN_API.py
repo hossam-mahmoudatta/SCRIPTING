@@ -5,8 +5,14 @@ from VERIFICATION_APIs import *
 from USER_HANDLING_APIs import *
 from DASHBOARD import *
 
+###########################################
+###########################################
+
 def signInMsg():
     print("\nHosa Crowd Funding App\nSign In Page")
+
+###########################################
+###########################################
 
 def signInAPI():
     print("\nEnter your Login Info:")
@@ -30,3 +36,6 @@ def signInAPI():
         else:
             print("Username doesn't exist! Try again.\n")
         break
+
+###########################################
+###########################################

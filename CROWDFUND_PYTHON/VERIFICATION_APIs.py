@@ -2,6 +2,9 @@
 
 import re
 
+###########################################
+###########################################
+
 def verifyInt(message="Please enter number:"):
     while True:
         try:
@@ -10,6 +13,8 @@ def verifyInt(message="Please enter number:"):
         except errorValue: # type: ignore
             print("Invalid input! Please enter a valid integer.")
 
+###########################################
+###########################################
 
 def verifyString(message="Please enter string:"):
     while True:
@@ -18,7 +23,9 @@ def verifyString(message="Please enter string:"):
             return inputString
         else:
             print("Invalid input! Please enter a valid string.")
-            
+
+###########################################
+###########################################
 
 def verifyEmail(message="Please enter a valid email:"):
     emailPattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
@@ -28,7 +35,9 @@ def verifyEmail(message="Please enter a valid email:"):
             return userEmail
         else:
             print("Invalid email! Please enter a valid email address.")
-            
+
+###########################################
+###########################################
 
 def verifyPassword(message="Enter your password: ", confirmMessage="Confirm your password: "):
     while True:
@@ -40,7 +49,9 @@ def verifyPassword(message="Enter your password: ", confirmMessage="Confirm your
             return password
         else:
             print("Passwords do not match. Please try again.")
-            
+
+###########################################
+###########################################
             
 def verifyMobile(message="Enter your Mobile number: "):
     while True:
@@ -52,3 +63,6 @@ def verifyMobile(message="Enter your Mobile number: "):
             return mobileNumber
         else:
             print("Invalid mobile number! Please enter a valid number with Egypt's country code.")
+
+###########################################
+###########################################

@@ -4,8 +4,14 @@
 from VERIFICATION_APIs import *
 from USER_HANDLING_APIs import *
 
+###########################################
+###########################################
+
 def signUpMsg():
     print("\nHosa Crowd Funding App\nSign Up Page")
+
+###########################################
+###########################################
 
 def signUpAPI():
     print("\nAdd User Info:")
@@ -51,3 +57,6 @@ def signUpAPI():
     saved = saveUserDB(userData)
     if saved:
         print("----------User Info Saved!----------")
+
+###########################################
+###########################################

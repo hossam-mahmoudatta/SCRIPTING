@@ -5,8 +5,14 @@ from SIGN_UP_API import *
 from SIGN_IN_API import *
 from PROJECT_HANDLING_APIs import *
 
+###########################################
+###########################################
+
 def dashboardMsg():
     print("\nHosa Crowd Funding App\nDashboard")
+
+###########################################
+###########################################
 
 def showMainMenu():
     print("\nMENU:")
@@ -48,3 +54,6 @@ def userDashboard(userData):
             break
         else:
             print("\nInvalid Choice")
+
+###########################################
+###########################################
