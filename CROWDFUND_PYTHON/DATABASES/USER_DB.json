@@ -4,45 +4,38 @@
         "fname": "Hossam",
         "lname": "Mahmoud",
         "user": "hosa",
-        "email": "hos@gmail.com",
+        "email": "hosa@gmail.com",
         "password": "123",
-        "mobile": "+20100000"
-    },
-    "fatoma": {
-        "id": "20250105002",
-        "fname": "Fa",
-        "lname": "Ma",
-        "user": "fatoma",
-        "email": "fatoma@gmail.com",
-        "password": "123",
-        "mobile": "+20109897987"
-    },
-    "mah": {
-        "id": "20250105003",
-        "fname": "Mah",
-        "lname": "Atta",
-        "user": "mah",
-        "email": "mah@gmail.com",
-        "password": "123",
-        "mobile": "+201039393"
-    },
-    "atta": {
-        "id": "20250105004",
-        "fname": "hos",
-        "lname": "mah",
-        "user": "atta",
-        "email": "atta@gmail.com",
-        "password": "123",
-        "mobile": "+20129448",
+        "mobile": "+201097666269",
         "projects": [
             {
                 "id": 1,
-                "title": "Project 001",
-                "description": "THis is anexample of editing an project",
-                "target_fund": 5000.0,
-                "start_date": "2024-01-10",
-                "end_date": "2024-01-20"
+                "title": "Hossam 1st Project",
+                "description": "This i sht efirst project hossam creates",
+                "target_fund": 320000.0,
+                "start_date": "2024-02-19",
+                "end_date": "2024-02-23"
             }
         ]
+    },
+    "fatma": {
+        "id": "20250105002",
+        "fname": "Fatma",
+        "lname": "Mahmoud",
+        "user": "fatma",
+        "email": "fatma@gmail.com",
+        "password": "123",
+        "mobile": "+2010723232",
+        "projects": []
+    },
+    "zizo": {
+        "id": "20250105003",
+        "fname": "Zeyad",
+        "lname": "Tarek",
+        "user": "zizo",
+        "email": "zizo@gmail.com",
+        "password": "123",
+        "mobile": "+20123124",
+        "projects": []
     }
 }
