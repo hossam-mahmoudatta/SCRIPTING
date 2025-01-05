@@ -37,8 +37,7 @@ def userDashboard(userData):
             
         elif choice == '4':
             print("\nDelete a Project...")
-            projectMsg()
-            createProject(userData)
+            deleteProject(userData)
             
         elif choice == '5':
             print("\nSearch for a Project...")

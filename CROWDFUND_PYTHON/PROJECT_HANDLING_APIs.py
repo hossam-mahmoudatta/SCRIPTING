@@ -81,7 +81,11 @@ def editProject(userData):
         for proj in userData["projects"]:
             if proj["id"] == projectID:
                 project = proj
-                break
+                break    
+        # Checks if project got assigned to actual projects
+        if project is None:
+            print("Project not found!")
+            return
         
         # Prompts the user which field they want to edit
         print(f"Editing Project: {project['title']}\n")
@@ -110,3 +114,44 @@ def editProject(userData):
     
     except ValueError:
         print("Invalid input. Please enter a valid Project ID.")
+
+###########################################
+###########################################
+
+def deleteProject(userData):
+    # Checks if this user has any projects or not
+    if not userData["projects"]:
+        print("No projects found.")
+        return
+    
+    print("\nSelect a project to delete:\n")
+    for project in userData["projects"]:
+        print(f"ID: {project['id']} - Title: {project['title']}")
+    
+    # Get the project ID to delete
+    try:
+        projectID = int(input("\nEnter project ID to delete: "))
+        project = None
+        # Will loop to find any projects
+        for proj in userData["projects"]:
+            if proj["id"] == projectID:
+                project = proj
+                break
+        # Checks if project got assigned to actual projects
+        if project is None:
+            print("Project not found!")
+            return
+        
+        # Remove the project from the list
+        userData["projects"].remove(project)
+        
+        # Save the updated user data
+        saveUserDB(userData)
+        print(f"\nProject '{project['title']}' deleted successfully!")
+    
+    except ValueError:
+        print("Invalid input. Please enter a valid project ID.")
+        
+###########################################
+###########################################
+
