@@ -13,4 +13,17 @@
 import unittest
 import math
 
-from 
+from CAR_SPEED import carSpeed
+
+class TestCarSpeed(unittest.TestCase):
+    def test_car_speed(self):
+        self.assertEqual(carSpeed(-5), 'Invalid')
+        self.assertEqual(carSpeed(35), 'Low')
+        self.assertEqual(carSpeed(45), 'Normal')
+        self.assertEqual(carSpeed(120), 'High')
+        self.assertEqual(carSpeed(210), 'V.High')
+        self.assertEqual(carSpeed(225), 'Invalid')
+
+
+# if __name__ == '__main__':
+#     unittest.main()
