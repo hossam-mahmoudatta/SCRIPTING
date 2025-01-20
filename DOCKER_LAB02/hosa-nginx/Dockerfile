@@ -5,10 +5,10 @@ FROM nginx:latest
 RUN rm /etc/nginx/conf.d/default.conf
 
 # Replace the default with our created config file
-COPY hosa-nginx.conf /etc/nginx/hosa-nginx.conf
+COPY hosa-nginx.conf /etc/nginx/
 
 # Copy my created HTML files to Nginx root
-COPY ../html/index.html /usr/share/nginx/html
+COPY ./html/index.html /usr/share/nginx/html
 
 # Expose port 8080
 EXPOSE 8080
