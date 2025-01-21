@@ -2,12 +2,14 @@
 # Created By: Hossam Mahmoud
 # Date: 2025-01-19
 # Filename: Dockerfile
-# Description: Multistage Dockerfile to run the React app
+# Description: Dockerfile to run the React app
 # Version: 1.0.0
 # Last Modified: 2025-01-19 by Hossam
 # Copyright (c) 2025 Hossam. All rights reserved.
 # TODO: Add future tasks or improvements
 # ==============================================
+
+
 
 
 ############ Build Stage ###########
@@ -38,7 +40,7 @@ FROM nginx:alpine
 COPY --from=build /app/build /usr/share/nginx/html
 
 # Expose port 3000
-EXPOSE 3000
+EXPOSE 1997
 
 # Start Nginx
-CMD ["nginx", "-g", "daemon off;", "-p", "3000"]
+CMD ["nginx", "-g", "daemon off;", "-p", "1997"]
