@@ -12,12 +12,10 @@
 # Use the latest LTS version of Ubuntu
 FROM ubuntu:latest
 
-# Prevent interactive prompts during package installation
-ENV DEBIAN_FRONTEND=noninteractive
 
 # Update the package list and install Nginx
 RUN apt-get update && \
-        apt-get install -y nginx && \
+        apt-get install -y ssh sudo && \
         apt-get clean
 
 # Expose port 80
