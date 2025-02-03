@@ -27,4 +27,4 @@ RUN echo "hosa-iti:123" | chpasswd
 RUN usermod -aG sudo hosa-iti
 
 # Starts the ssh and bash services on the container
-ENTRYPOINT service ssh start && bash
+ENTRYPOINT ["bash", "-c", "service ssh start && exec bash"]
