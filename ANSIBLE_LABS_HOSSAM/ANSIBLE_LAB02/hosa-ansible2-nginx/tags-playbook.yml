@@ -1,27 +1,16 @@
 ---
-- name: Deploy Nginx and other configs
+- name: Simple playbook to implement TAGS
   hosts: all
   become: yes  # Run tasks with sudo privileges
-  tasks:
+  tasks: # Here i will specify the tasks that I want to create
+
     - name: Update apt cache
+      tags: update
       apt:
         update_cache: yes
 
     - name: Install the latest version of Nginx
+      tags: install
       apt:
         name: nginx
         state: latest
-
-    - name: Copy index.html from controller to host
-      copy:
-        src: ./index.html      # Replace with the actual path on the controller
-        dest: /var/www/html/index.html
-        owner: www-data
-        group: www-data
-        mode: '0644'
-
-    - name: Restart Nginx service
-      service:
-        name: nginx
-        state: restarted
-        use: service
