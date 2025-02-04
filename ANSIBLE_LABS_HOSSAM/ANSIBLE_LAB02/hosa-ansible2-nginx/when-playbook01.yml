@@ -1,26 +1,26 @@
 ---
-- name: Simple playbook to implement VARIABLES
+- name: Simple playbook to implement WHEN
   hosts: all
   become: yes  # Run tasks with sudo privileges
   gather_facts: yes # Ensures Ansible collect env facts
-  vars:
-    packages_actions:
-      - name: curl
-        action: absent     # removes the package
-      - name: git
-        action: latest      # upgrades to the latest version
-      - name: gparted
-        action: present      # installs the package
   
   tasks: # Here i will specify the tasks that I want to create
-    - name: Install latest version of each package
+    - name: Install nginx based on distribution
       tags: install
       apt:
-        name: "{{ item.name }}"
-        state: "{{item.action}}"
+        name: nginx
+        state: latest
         update_cache: yes
-      loop: "{{ packages_actions }}" # This will point to the packages_list up
-    
+      when: ansible_facts['distribution'] == "Ubuntu"
+  
+    - name: Install apache based on condition
+      tags: install
+      apt:
+        name: httpd
+        state: latest
+        update_cache: yes
+      when: ansible_facts['distribution'] == "CentOs"
+
     - name: Display the current user name
       tags: always
       debug:
