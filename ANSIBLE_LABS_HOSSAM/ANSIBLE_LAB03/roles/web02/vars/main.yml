@@ -1,6 +1,6 @@
 ---
 # vars file for 'web' Role
-package_name: zsh
+package_name: xterm
 file_list:
-  - index1.html
-  - index2.html
+  - index3.html
+  - index4.html
