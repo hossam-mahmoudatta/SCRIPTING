@@ -1,0 +1,7 @@
+[web_servers]
+172.17.0.2
+
+[all:vars]
+package_name=wget
+package_version=latest
+

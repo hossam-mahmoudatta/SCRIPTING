@@ -1,0 +1,40 @@
+---
+- name: Simple playbook to implement VARIABLES
+  hosts: all
+  become: yes  # Run tasks with sudo privileges
+  gather_facts: yes # Ensures Ansible collect env facts
+  vars:
+    packages_actions:
+      - name: curl
+        action: absent     # removes the package
+      - name: git
+        action: latest      # upgrades to the latest version
+      - name: gparted
+        action: present      # installs the package
+  
+  tasks: # Here i will specify the tasks that I want to create
+    - name: Install latest version of each package
+      tags: install
+      apt:
+        name: "{{ item.name }}"
+        state: "{{item.action}}"
+        update_cache: yes
+      loop: "{{ packages_actions }}" # This will point to the packages_list up
+    
+    - name: Display the current user name
+      tags: always
+      debug:
+        msg: "The current user is {{ ansible_env.USER }}"
+
+    # - name: Install {{package_name}} version {{package_version}}
+    #   tags: install
+    #   apt:
+    #     name: "{{ package_name }}"
+    #     state: "{{ package_version }}"
+    #     update_cache: yes
+
+    # - name: Install the latest version of Nginx
+    #   tags: install
+    #   apt:
+    #     name: nginx
+    #     state: latest
