@@ -16,6 +16,13 @@
     - name: Display the installation result
       debug:
         var: install_result
+        
+    - name: Restart the service if installation is successful
+      service:
+        name: nginx
+        state: restarted
+        use: service
+      when: install_result.changed or not install_result.failed
 
     - name: Display the current user name
       tags: always
