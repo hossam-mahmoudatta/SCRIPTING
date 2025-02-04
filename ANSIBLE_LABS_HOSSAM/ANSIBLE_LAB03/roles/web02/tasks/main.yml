@@ -1,0 +1,22 @@
+---
+# tasks file for 'web' Role
+- name: Install {{ package_name }}
+  apt:
+    name: "{{ package_name }}" # Installs the package inside the playbook inside vars
+    state: present
+    update_cache: yes
+  register: install_result
+
+- name: Copy files from controller to host
+  copy:
+    src: "{{ item }}"
+    dest: "/tmp/{{ item }}"
+  loop: "{{ file_list }}"
+  when: install_result.changed
+  register: copy_result
+
+- name: Restart the service if files were copied
+  ansible.builtin.service:
+    name: "{{ package_name }}"
+    state: restarted
+  when: copy_result.changed

@@ -1,0 +1,6 @@
+---
+# vars file for 'web' Role
+package_name: zsh
+file_list:
+  - index1.html
+  - index2.html
