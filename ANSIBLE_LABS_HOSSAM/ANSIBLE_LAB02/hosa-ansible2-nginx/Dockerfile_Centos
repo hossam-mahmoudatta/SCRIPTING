@@ -9,21 +9,26 @@
 # TODO: Add future tasks or improvements
 # ==============================================
 
-# Use the latest LTS version of Ubuntu
+# Use version 7 of centos
 FROM centos:7
 
-# Update the package list and install Nginx
-RUN yum update -y && \
-        yum install -y ssh sudo
+# Update YUM repository configuration to use vault.centos.org
+RUN cd /etc/yum.repos.d/ && \
+        sed -i 's/mirrorlist/#mirrorlist/g' CentOS-* && \
+        sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' CentOS-* && \
+        yum clean all && \
+        yum update -y
 
-# Adds a user with the name of hosa-iti
-RUN adduser hosa-iti
+# Install SSH and sudo
+RUN yum install -y openssh-server sudo
 
-# Changes the password of the user created
-RUN echo "hosa-iti:123" | chpasswd
+# Add user 'hosa-iti' and set password
+RUN useradd hosa-iti && \
+        echo "hosa-iti:123" | chpasswd && \
+        usermod -aG wheel hosa-iti
 
-# Confirms the change of the password
-RUN usermod -aG sudo hosa-iti
+# # Enable SSH service
+# RUN service ssh start
 
-# Starts the ssh and bash services on the container
-ENTRYPOINT ["bash", "-c", "service ssh start"]
+# Start SSH service when the container runs
+CMD ["/usr/sbin/sshd", "-D"]
