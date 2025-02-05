@@ -5,7 +5,7 @@
     name: "{{ package_name }}" # Installs the package inside the playbook inside vars
     state: present
     update_cache: yes
-  register: install_result
+  notify: restart {{ package_name }}
 
 - name: Copy files from controller to host
   copy:
