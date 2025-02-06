@@ -1,5 +1,5 @@
 nimcache/
 nimblecache/
 htmldocs/
-node_modules
+/node_modules/
 
