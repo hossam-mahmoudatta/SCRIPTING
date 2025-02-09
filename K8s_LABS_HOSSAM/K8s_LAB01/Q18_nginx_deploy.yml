@@ -1,20 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deployment-2
+  name: nginx-deployment
   annotations:
     kubernetes.io/change-cause: "Installing Nginx to version latest"
   labels:
-    app: nginx
+    app: nginx-app
+    type: front-end
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: nginx
+      app: nginx-app
+      type: front-end
   template:
     metadata:
       labels:
-        app: nginx
+        app: nginx-app
+        type: front-end
     spec:
       containers:
       - name: nginx-container
