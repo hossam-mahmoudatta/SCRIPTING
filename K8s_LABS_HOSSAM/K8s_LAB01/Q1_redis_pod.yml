@@ -5,4 +5,4 @@ metadata:
 spec:
   containers:
   - name: redis-con1
-  image: redis
+    image: redis:latest
