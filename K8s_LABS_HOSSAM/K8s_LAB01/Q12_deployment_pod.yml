@@ -1,17 +1,22 @@
 apiVersion: apps/v1
-kind: ReplicaSet
+kind: Deployment
 metadata:
-  name: replica-set-1
+  name: deployment-1
+  labels:
+    app: busybox
 spec:
   replicas: 3
   selector:
     matchLabels:
-      tier: frontend
+      app: busybox
   template:
     metadata:
       labels:
-        tier: frontend
+        app: busybox
     spec:
       containers:
-      - name: busybox-con1
+      - name: busybox-con2
         image: busybox
+        ports:
+        - containerPort: 80
+
