@@ -25,5 +25,3 @@ spec:  # Pod spec
     port: 80  # Port number
     targetPort: 80  # Port number on the container
     nodePort: 30082  # Exposes the service on port 30082 on cluster nodes
-
-
