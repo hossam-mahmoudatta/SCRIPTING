@@ -1,7 +1,7 @@
 # ==============================================
 # Created By: Hossam Mahmoud
 # Date: 2025-02-10
-# Filename: Q09_service_pod.yml
+# Filename: Q12_service_pod.yml
 # Description: Brief description of what the file does
 # Version: 1.0.0
 # Copyright (c) 2025 Hossam. All rights reserved.
@@ -10,15 +10,20 @@
 apiVersion: v1  # Specifies the API version for Kubernetes apps
 kind: Service     # Defines the resource type
 metadata:
-  name: backend-service  # Name of the resource type
+  name: web-app-service  # Name of the resource type
+  labels:
+    app: web-app  # Labels to match with the deployment
   annotations:
-    tracking: "hosa-backend_service-v1"  # Annotation for tracking purposes
+    tracking: "hosa-webapp-service-v1"  # Annotation for tracking purposes
 
 spec:  # Pod spec
-  type: ClusterIP  # Specifies the service type
+  type: NodePort  # Specifies the service type
   selector:  # Selects the pods to be exposed
-    tier: backend  # Selects the pods with the label "tier=backend"
+    app: web-app  # Selects the pods with the label web-app
   ports:
   - protocol: TCP # Specifies the protocol for the port
     port: 80  # Port number
     targetPort: 80  # Port number on the container
+    nodePort: 30082  # Exposes the service on port 30082 on cluster nodes
+
+
