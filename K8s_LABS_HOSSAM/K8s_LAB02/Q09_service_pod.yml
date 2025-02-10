@@ -17,7 +17,7 @@ metadata:
 spec:  # Pod spec
   selector:  # Selects the pods to be exposed
     tier: backend  # Selects the pods with the label "tier=backend"
-    ports:
-    - protocol: TCP # Specifies the protocol for the port
-      port: 80  # Port number
-      targetPort: 80  # Port number on the container
+  ports:
+  - protocol: TCP # Specifies the protocol for the port
+    port: 80  # Port number
+    targetPort: 80  # Port number on the container
