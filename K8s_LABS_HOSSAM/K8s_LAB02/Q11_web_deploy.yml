@@ -11,6 +11,8 @@ apiVersion: apps/v1  # Specifies the API version for Kubernetes Deployment
 kind: Deployment  # Declares the resource type
 metadata:
   name: web-app  # Name of the resource
+  annotations:
+    tracking: "hosa-webapp-deployment-v1"  # Annotation for tracking purposes
   labels:
     app: web-app
 
@@ -27,6 +29,6 @@ spec:
 
     spec:
       containers:
-        - name: nginx-container  # Name of the container inside each pod
+        - name: nginx-con  # Name of the container inside each pod
           image: nginx:latest  # Specifies the container image to use
 
