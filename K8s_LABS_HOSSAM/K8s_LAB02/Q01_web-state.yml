@@ -1,0 +1,32 @@
+# ==============================================
+# Created By: Hossam Mahmoud
+# Date: 2025-02-10
+# Filename: Q01_web-state.yml
+# Description: Brief description of what the file does
+# Version: 1.0.0
+# Copyright (c) 2025 Hossam. All rights reserved.
+# ==============================================
+
+apiVersion: apps/v1  # Specifies the API version for Kubernetes apps
+kind: StatefulSet     # Defines the resource type as a StatefulSet
+metadata:
+  name: web-statefulset  # Name of the StatefulSet
+  annotations:
+    tracking: "hosa-nginx-statefulset-v1"  # Annotation for tracking purposes
+
+spec:
+  serviceName: "web"  # The headless service name that manages the StatefulSet pods
+  replicas: 2  # No. of pod replicas to ensure availability and reliability
+  selector:
+    matchLabels:
+      app: web  # Ensures the StatefulSet only manages pods with this label
+
+  template:  # Defines the pod template for creating replicas
+    metadata:
+      labels:
+        app: web  # Labels assigned to the pods for identification
+
+    spec:  # Pod spec
+      containers:
+        - name: nginx-con  # Name of the container inside the pod
+          image: nginx:latest  # Container image used
