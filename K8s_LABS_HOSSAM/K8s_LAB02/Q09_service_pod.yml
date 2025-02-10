@@ -21,3 +21,4 @@ spec:  # Pod spec
   - protocol: TCP # Specifies the protocol for the port
     port: 80  # Port number
     targetPort: 80  # Port number on the container
+    
