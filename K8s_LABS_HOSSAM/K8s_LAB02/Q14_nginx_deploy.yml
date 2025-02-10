@@ -15,13 +15,18 @@ metadata:
     tracking: "hosa-nginx-deploy-v1"  # Annotation for tracking purposes
   labels:
     app: nginx
+    tier: frontend
 
 spec:
   replicas: 2  # Specifies that 2 replicas (pods) should be created
   selector:
     matchExpressions:
-      - {key: app, operator: In, values: {nginx}}
-      - {key: tier, operator: In, values: {frontend}}
+      - key: app
+        operator: In
+        values: ["nginx"]
+      - key: tier
+        operator: In
+        values: ["frontend"]
 
   template:  # Defines the template for creating pods
     metadata:
