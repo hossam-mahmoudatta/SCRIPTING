@@ -1,0 +1,32 @@
+# ==============================================
+# Created By: Hossam Mahmoud
+# Date: 2025-02-10
+# Filename: Q11_web_deploy.yml
+# Description: Brief description of what the file does
+# Version: 1.0.0
+# Copyright (c) 2025 Hossam. All rights reserved.
+# ==============================================
+
+apiVersion: apps/v1  # Specifies the API version for Kubernetes Deployment
+kind: Deployment  # Declares the resource type
+metadata:
+  name: web-app  # Name of the resource
+  labels:
+    app: web-app
+
+spec:
+  replicas: 2  # Specifies that 2 replicas (pods) should be created
+  selector:
+    matchLabels:
+      app: web-app  # Ensures the Deployment manages only pods with this label
+
+  template:  # Defines the template for creating pods
+    metadata:
+      labels:
+        app: web-app  # Labels for the pods created by this Deployment
+
+    spec:
+      containers:
+        - name: nginx-container  # Name of the container inside each pod
+          image: nginx:latest  # Specifies the container image to use
+
