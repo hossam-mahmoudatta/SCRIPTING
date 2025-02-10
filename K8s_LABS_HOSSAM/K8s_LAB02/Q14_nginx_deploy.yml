@@ -1,7 +1,7 @@
 # ==============================================
 # Created By: Hossam Mahmoud
 # Date: 2025-02-10
-# Filename: Q11_web_deploy.yml
+# Filename: Q14_nginx_deploy.yml
 # Description: Brief description of what the file does
 # Version: 1.0.0
 # Copyright (c) 2025 Hossam. All rights reserved.
@@ -10,22 +10,24 @@
 apiVersion: apps/v1  # Specifies the API version for Kubernetes Deployment
 kind: Deployment  # Declares the resource type
 metadata:
-  name: nginx-app  # Name of the resource
+  name: nginx-deploy  # Name of the resource
   annotations:
     tracking: "hosa-nginx-deploy-v1"  # Annotation for tracking purposes
   labels:
-    app: nginx-app
+    app: nginx
 
 spec:
   replicas: 2  # Specifies that 2 replicas (pods) should be created
   selector:
-    matchLabels:
-      app: web-app  # Ensures the Deployment manages only pods with this label
+    matchExpressions:
+      - {key: app, operator: In, values: {nginx}}
+      - {key: tier, operator: In, values: {frontend}}
 
   template:  # Defines the template for creating pods
     metadata:
       labels:
-        app: web-app  # Labels for the pods created by this Deployment
+        app: nginx  # Labels for the pods created by this Deployment
+        tier: frontend
 
     spec:
       containers:
