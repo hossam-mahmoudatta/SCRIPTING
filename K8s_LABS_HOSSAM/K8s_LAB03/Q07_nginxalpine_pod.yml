@@ -1,0 +1,22 @@
+# ==============================================
+# Created By: Hossam Mahmoud
+# Date: 2025-02-10
+# Filename: Q07_nginxalpine_pod.yml
+# Description: Brief description of what the file does
+# Version: 1.0.0
+# Copyright (c) 2025 Hossam. All rights reserved.
+# ==============================================
+
+apiVersion: v1  # Specifies the API version for Kubernetes apps
+kind: Pod     # Defines the resource type
+metadata:
+  name: nginx-pod  # Name of the resource type
+  labels:
+    tier: backend  # Label for the resource type
+  annotations:
+    tracking: "hosa-alpine-pod-v1"  # Annotation for tracking purposes
+
+spec:  # Pod spec
+  containers:
+    - name: nginx-alpine  # Name of the container inside the pod
+      image: nginx:alpine  # Container image used

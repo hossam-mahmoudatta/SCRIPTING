@@ -1,0 +1,32 @@
+# ==============================================
+# Created By: Hossam Mahmoud
+# Date: 2025-02-10
+# Filename: Q03_nginx_daemon.yml
+# Description: Brief description of what the file does
+# Version: 1.0.0
+# Copyright (c) 2025 Hossam. All rights reserved.
+# ==============================================
+
+apiVersion: apps/v1  # Specifies the API version for Kubernetes apps
+kind: DaemonSet     # Defines the resource type
+metadata:
+  name: nginx  # Name of the resource type
+  labels:
+    app: nginx  # Label for the resource type
+  annotations:
+    tracking: "hosa-nginx-daemonset-v1"  # Annotation for tracking purposes
+
+spec:
+  selector:
+    matchLabels:
+      app: nginx  # Selects the pods to be managed by the DaemonSet
+
+  template:  # Defines the pod template for creating replicas
+    metadata:
+      labels:
+        app: nginx  # Label for the pod
+
+    spec:  # Pod spec
+      containers:
+        - name: nginx-daemon-con  # Name of the container inside the pod
+          image: nginx:latest  # Container image used
