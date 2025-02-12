@@ -17,12 +17,26 @@
 #
 # ==============================================
 
-apiVersion: v1  # Specifies the API version for Kubernetes apps
-kind: Namespace     # Defines the resource type as a StatefulSet
+# Create the namespace here:
+apiVersion: v1  # Specifies the API version
+kind: Namespace     # Defines the resource type
 metadata:
-  name: finance  # Name of the resource
+  name: iti  # Name of the resource
   annotations:
-    tracking: "finance_namespace-v1"  # Annotation for tracking purposes
+    tracking: "iti_namespace-v1"  # Annotation for tracking purposes
+
+---
+
+# Apply a resource quota to the namespace created up
+apiVersion: v1  # Specifies the API version
+kind: ResourceQuota  # Defines the resource type
+metadata:
+  name: my-quota  # Name of the quota resource
+  namespace: iti  # Namespace where the quota applies
+
+spec:
+  hard:  # Defines the hard limit on resources
+    pods: "2"  # Limits the total number of pods in the namespace to 2
 
 # ==============================================
 #
