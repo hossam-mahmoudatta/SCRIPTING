@@ -30,7 +30,7 @@ spec:
   replicas: 2  # No. of pod replicas to ensure availability and reliability
   selector:
     matchLabels:
-      app: blue  # Label to match the pods
+      app: blue  # Label for the resource
 
   template:  # Defines the pod template for creating replicas
     metadata:
@@ -38,6 +38,16 @@ spec:
         app: blue  # Labels assigned to the pods for identification
 
     spec:  # Pod spec
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                - key: color
+                  operator: In
+                  values:
+                    - blue
+
       containers:
         - name: nginx-conX  # Name of the container inside the pod
           image: nginx:latest  # Container image used
