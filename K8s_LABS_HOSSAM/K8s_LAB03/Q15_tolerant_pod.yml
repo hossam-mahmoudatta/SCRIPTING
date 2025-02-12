@@ -6,7 +6,7 @@
 #
 # Created By: Hossam Mahmoud
 # Date: 2025-02-12
-# Filename: Q13_tolerant_pod.yml
+# Filename: Q15_tolerant_pod.yml
 # Description: 
 # Version: 1.0.0
 # Copyright (c) 2025 Hossam. All rights reserved.
@@ -25,6 +25,11 @@ metadata:
     tracking: "tolerant-pod-v1"  # Annotation for tracking purposes
 
 spec:  # Pod spec
+  tolerations:
+    - key: "special-node"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"  # Effect of the toleration
   containers:
     - name: nginx-con03  # Name of the container inside the pod
       image: nginx:latest  # Container image used
