@@ -1,0 +1,68 @@
+# ==============================================
+#
+# ================= FILE START ==================
+#
+# ==============================================
+#
+# Created By: Hossam Mahmoud
+# Date: 2025-02-12
+# Filename: Q05_blue_deploy.yml
+# Description: 
+# Version: 1.0.0
+# Copyright (c) 2025 Hossam. All rights reserved.
+#
+# ==============================================
+#
+# =========== IMPLEMENTATION START =============
+#
+# ==============================================
+
+apiVersion: apps/v1  # Specifies the API version for Kubernetes apps
+kind: Deployment     # Defines the resource type
+metadata:
+  name: blue  # Name of the resource
+  labels:
+    app: blue  # Label for the resource
+  annotations:
+    tracking: "blue_deployment-v1"  # Annotation for tracking purposes
+
+spec:
+  replicas: 2  # No. of pod replicas to ensure availability and reliability
+  selector:
+    matchLabels:
+      app: blue  # Label for the resource
+
+  template:  # Defines the pod template for creating replicas
+    metadata:
+      labels:
+        app: blue  # Labels assigned to the pods for identification
+
+    spec:  # Pod specification
+      affinity:  # Defines scheduling constraints for the pod
+        nodeAffinity:  # Specifies rules for selecting nodes based on labels
+          requiredDuringSchedulingIgnoredDuringExecution:  # Hard requirement for scheduling;
+            nodeSelectorTerms:  # Defines one or more conditions for node selection
+              - matchExpressions:  # List of label-based conditions
+                - key: color  # Specifies the node label key to match
+                  operator: In  # Defines the condition; "In" means the node must have one of the specified values
+                  values:
+                    - blue  # The pod will only be scheduled on nodes labeled with color=blue
+
+      containers:
+        - name: nginx-conx  # Name of the container inside the pod
+          image: nginx:latest  # Container image used
+
+# ==============================================
+#
+# ============ IMPLEMENTATION END ==============
+#
+# ==============================================
+#
+# End of File
+# Copyright (c) 2025 Hossam. All rights reserved.
+#
+# ==============================================
+#
+# ================== FILE END ====================
+#
+# ==============================================
