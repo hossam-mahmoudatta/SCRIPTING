@@ -37,19 +37,19 @@ spec:
       labels:
         app: blue  # Labels assigned to the pods for identification
 
-    spec:  # Pod spec
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                - key: color
-                  operator: In
+    spec:  # Pod specification
+      affinity:  # Defines scheduling constraints for the pod
+        nodeAffinity:  # Specifies rules for selecting nodes based on labels
+          requiredDuringSchedulingIgnoredDuringExecution:  # Hard requirement for scheduling;
+            nodeSelectorTerms:  # Defines one or more conditions for node selection
+              - matchExpressions:  # List of label-based conditions
+                - key: color  # Specifies the node label key to match
+                  operator: In  # Defines the condition; "In" means the node must have one of the specified values
                   values:
-                    - blue
+                    - blue  # The pod will only be scheduled on nodes labeled with color=blue
 
       containers:
-        - name: nginx-conX  # Name of the container inside the pod
+        - name: nginx-conx  # Name of the container inside the pod
           image: nginx:latest  # Container image used
 
 # ==============================================
