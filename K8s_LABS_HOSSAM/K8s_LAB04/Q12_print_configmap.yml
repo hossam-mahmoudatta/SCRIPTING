@@ -1,0 +1,47 @@
+# ==============================================
+#
+# ================= FILE START ==================
+#
+# ==============================================
+#
+# Created By: Hossam Mahmoud
+# Date: 2025-02-13
+# Filename: Q12_print_configmap.yml
+# Description: 
+# Version: 1.0.0
+# Copyright (c) 2025 Hossam. All rights reserved.
+#
+# ==============================================
+#
+# =========== IMPLEMENTATION START =============
+#
+# ==============================================
+
+apiVersion: v1  # Specifies the API version for Kubernetes apps
+kind: ConfigMap     # Defines the resource type
+metadata:
+  name: print-envars-configmap # Name of the resource
+  labels:
+    app: print  # Label for the resource
+  annotations:
+    tracking: "print-envars-v1"  # Annotation for tracking purposes
+
+data:
+  GREETING: "Welcome to"
+  COMPANY: "DevOps"
+  GROUP: "Industries"
+
+# ==============================================
+#
+# ============ IMPLEMENTATION END ==============
+#
+# ==============================================
+#
+# End of File
+# Copyright (c) 2025 Hossam. All rights reserved.
+#
+# ==============================================
+#
+# ================== FILE END ====================
+#
+# ==============================================

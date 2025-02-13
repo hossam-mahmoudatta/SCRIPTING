@@ -6,7 +6,7 @@
 #
 # Created By: Hossam Mahmoud
 # Date: 2025-02-13
-# Filename: Q11_red_pod.yml
+# Filename: Q12_print-envars_pod.yml
 # Description: 
 # Version: 1.0.0
 # Copyright (c) 2025 Hossam. All rights reserved.
@@ -20,20 +20,38 @@
 apiVersion: v1  # Specifies the API version for Kubernetes apps
 kind: Pod     # Defines the resource type
 metadata:
-  name: red  # Name of the resource type
+  name: print-envars-greeting  # Name of the resource type
   labels:
-    app: red  # Label for the resource type
+    app: print  # Label for the resource type
   annotations:
-    tracking: "red-initpod-v1"  # Annotation for tracking purposes
+    tracking: "print-envars-v1"  # Annotation for tracking purposes
 
 spec:  # Pod spec
-  initContainers:
-    - name: init-wait  # Name of the container inside the pod
-      image: busybox  # Container image used
-      command: ["sleep", "20"]
   containers:
-    - name: redis-con  # Name of the container inside the pod
-      image: redis  # Container image used
+    - name: print-env-container  # Name of the container inside the pod
+      image: bash:latest  # Container image used
+      command: ["/bin/bash", "-c"]  # Command to run inside the container
+      args: ["echo \"$(GREETING) $(COMPANY) $(GROUP)\" && sleep 3600"]
+
+      env:
+        - name: GREETING  # Defines an environment variable
+          valueFrom:
+            configMapKeyRef:  # Fetches the value from a ConfigMap
+              name: print-envars-configmap # Name of the ConfigMap to reference
+              key: GREETING  # The specific key inside the ConfigMap to use as the value
+
+        - name: COMPANY  # Defines an environment variable
+          valueFrom:
+            configMapKeyRef:  # Fetches the value from a ConfigMap
+              name: print-envars-configmap # Name of the ConfigMap to reference
+              key: COMPANY  # The specific key inside the ConfigMap to use as the value
+
+        - name: GROUP  # Defines an environment variable
+          valueFrom:
+            configMapKeyRef:  # Fetches the value from a ConfigMap
+              name: print-envars-configmap # Name of the ConfigMap to reference
+              key: GROUP  # The specific key inside the ConfigMap to use as the value
+
 
 # ==============================================
 #
