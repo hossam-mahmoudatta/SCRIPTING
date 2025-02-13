@@ -5,8 +5,8 @@
 # ==============================================
 #
 # Created By: Hossam Mahmoud
-# Date: 2025-02-12
-# Filename: Q03_finance_namespace.yml
+# Date: 2025-02-13
+# Filename: Q03_webapp_pod.yml
 # Description: 
 # Version: 1.0.0
 # Copyright (c) 2025 Hossam. All rights reserved.
@@ -18,11 +18,24 @@
 # ==============================================
 
 apiVersion: v1  # Specifies the API version for Kubernetes apps
-kind: Namespace     # Defines the resource type as a StatefulSet
+kind: Pod     # Defines the resource type
 metadata:
-  name: finance  # Name of the resource
+  name: webapp-color  # Name of the resource type
+  labels:
+    app: webapp  # Label for the resource type
   annotations:
-    tracking: "finance_namespace-v1"  # Annotation for tracking purposes
+    tracking: "webapp-pod-v1"  # Annotation for tracking purposes
+
+spec:  # Pod spec
+  containers:
+    - name: webapp-nginx-con01  # Name of the container inside the pod
+      image: nginx:latest  # Container image used
+      env:
+        - name: APP_COLOR  # Defines an environment variable
+          valueFrom:
+            configMapKeyRef:  # Fetches the value from a ConfigMap
+              name: webapp-config-map  # Name of the ConfigMap to reference
+              key: APP_COLOR  # The specific key inside the ConfigMap to use as the value
 
 # ==============================================
 #
