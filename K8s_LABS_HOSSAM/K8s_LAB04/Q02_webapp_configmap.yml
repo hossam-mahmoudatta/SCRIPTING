@@ -5,8 +5,8 @@
 # ==============================================
 #
 # Created By: Hossam Mahmoud
-# Date: 2025-02-12
-# Filename: Q03_beta_deploy.yml
+# Date: 2025-02-13
+# Filename: Q02_webapp_configmap.yml
 # Description: 
 # Version: 1.0.0
 # Copyright (c) 2025 Hossam. All rights reserved.
@@ -18,7 +18,7 @@
 # ==============================================
 
 apiVersion: apps/v1  # Specifies the API version for Kubernetes apps
-kind: Deployment     # Defines the resource type
+kind: ConfigMap     # Defines the resource type
 metadata:
   name: beta  # Name of the resource
   namespace: finance
