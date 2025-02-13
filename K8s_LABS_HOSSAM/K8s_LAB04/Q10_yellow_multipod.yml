@@ -20,16 +20,18 @@
 apiVersion: v1  # Specifies the API version for Kubernetes apps
 kind: Pod     # Defines the resource type
 metadata:
-  name: db-pod  # Name of the resource type
+  name: yellow  # Name of the resource type
   labels:
-    app: db  # Label for the resource type
+    app: yellow  # Label for the resource type
   annotations:
-    tracking: "db-pod-v1"  # Annotation for tracking purposes
+    tracking: "yellow-multipod-v1"  # Annotation for tracking purposes
 
 spec:  # Pod spec
   containers:
-    - name: db-mysql-con01  # Name of the container inside the pod
-      image: mysql:5.7  # Container image used
+    - name: lemon  # Name of the container inside the pod
+      image: busybox  # Container image used
+    - name: gold  # Name of the container inside the pod
+      image: redis  # Container image used
 
 # ==============================================
 #
