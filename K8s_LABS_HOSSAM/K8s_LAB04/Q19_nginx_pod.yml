@@ -1,12 +1,14 @@
 # ==============================================
 #
+# ==============================================
+#
 # ================= FILE START ==================
 #
 # ==============================================
 #
 # Created By: Hossam Mahmoud
 # Date: 2025-02-13
-# Filename: Q19_nodejs_pod.yml
+# Filename: Q19_nginx_pod.yml
 # Description: 
 # Version: 1.0.0
 # Copyright (c) 2025 Hossam. All rights reserved.
@@ -20,7 +22,7 @@
 apiVersion: v1  # Specifies the API version for Kubernetes apps
 kind: Pod     # Defines the resource type
 metadata:
-  name: nginx-pod02  # Name of the resource type
+  name: nginx-pod07  # Name of the resource type
   labels:
     app: nginx  # Label for the resource type
   annotations:
@@ -28,8 +30,8 @@ metadata:
 
 spec:  # Pod spec
   containers:
-    - name: nginx-con08 # Name of the container inside the pod
-      image: nginx:latest  # Container image used
+    - name: nginx-con07 # Name of the container inside the pod
+      image: nginx # Container image used
 
 # ==============================================
 #
