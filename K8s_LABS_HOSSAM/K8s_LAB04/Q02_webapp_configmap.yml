@@ -20,36 +20,14 @@
 apiVersion: apps/v1  # Specifies the API version for Kubernetes apps
 kind: ConfigMap     # Defines the resource type
 metadata:
-  name: beta  # Name of the resource
-  namespace: finance
+  name: webapp-config-map  # Name of the resource
   labels:
-    app: beta  # Label for the resource
+    app: webapp  # Label for the resource
   annotations:
-    tracking: "beta_deployment-v1"  # Annotation for tracking purposes
+    tracking: "webapp-configmap-v1"  # Annotation for tracking purposes
 
-spec:
-  replicas: 2  # No. of pod replicas to ensure availability and reliability
-  selector:
-    matchLabels:
-      app: beta  # Label to match the pods
-
-  template:  # Defines the pod template for creating replicas
-    metadata:
-      labels:
-        app: beta  # Labels assigned to the pods for identification
-
-    spec:  # Pod spec
-      containers:
-        - name: redis-con01  # Name of the container inside the pod
-          image: redis:latest  # Container image used
-
-          resources:
-            requests: # Minimum amount of resources needed
-              cpu: "500m" # CPU request for the container "millicores"
-              memory: "1Gi" # Memory request for the container "gibibytes"
-            limits: # Maximum amount of resources needed
-              cpu: "1000m" # CPU limit for the container "millicores" cpu
-              memory: "2Gi" # Memory limit for the container "gibibytes"
+data:
+  APP_COLOR: darkblue
 
 # ==============================================
 #
