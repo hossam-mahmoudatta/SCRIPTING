@@ -27,10 +27,10 @@ metadata:
     tracking: "db-secret-v1"  # Annotation for tracking purposes
 
 data: # Specifies the data for the secret
-  MYSQL_DATABASE: sql01 # Specifies the database name
-  MYSQL_USER: user1 # Specifies the user name
-  MYSQL_PASSWORD: password # Specifies the password for the database
-  MYSQL_ROOT_PASSWORD: password123 # Specifies the root password
+  MYSQL_DATABASE: c3FsMDE= # Specifies the database name
+  MYSQL_USER: dXNlcjE= # Specifies the user name
+  MYSQL_PASSWORD: cGFzc3dvcmQ= # Specifies the password for the database
+  MYSQL_ROOT_PASSWORD: cGFzc3dvcmQxMjM= # Specifies the root password
 
 # ==============================================
 #
