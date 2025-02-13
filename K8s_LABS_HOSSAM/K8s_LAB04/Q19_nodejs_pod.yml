@@ -6,7 +6,7 @@
 #
 # Created By: Hossam Mahmoud
 # Date: 2025-02-13
-# Filename: Q17_nginx-liveness_pod.yml
+# Filename: Q19_nodejs_pod.yml
 # Description: 
 # Version: 1.0.0
 # Copyright (c) 2025 Hossam. All rights reserved.
@@ -20,24 +20,16 @@
 apiVersion: v1  # Specifies the API version for Kubernetes apps
 kind: Pod     # Defines the resource type
 metadata:
-  name: nginx-liveness-probe  # Name of the resource type
+  name: nodejs-pod  # Name of the resource type
   labels:
-    app: nginx-liveness  # Label for the resource type
+    app: nodejs  # Label for the resource type
   annotations:
-    tracking: "nginx-liveness-v1"  # Annotation for tracking purposes
+    tracking: "nodejs-pod-v1"  # Annotation for tracking purposes
 
 spec:  # Pod spec
   containers:
-    - name: nginx-container02 # Name of the container inside the pod
-      image: nginx:latest  # Container image used
-
-      livenessProbe:
-        httpGet: # HTTP GET request to check the container's status
-          path: /test.html  # Path to check
-          port: 80  # Port to check
-        initialDelaySeconds: 3  # Initial delay in seconds before checking
-        periodSeconds: 3  # Period in seconds to check the container's status
-        failureThreshold: 3 # Trials b4 K8s declare failure
+    - name: nodejs-con01 # Name of the container inside the pod
+      image: node:22.13  # Container image used
 
 # ==============================================
 #
