@@ -32,24 +32,12 @@ spec:  # Pod spec
       image: nginx:latest  # Container image used
 
       startupProbe:
-        - name: GREETING  # Defines an environment variable
-          valueFrom:
-            configMapKeyRef:  # Fetches the value from a ConfigMap
-              name: print-envars-configmap # Name of the ConfigMap to reference
-              key: GREETING  # The specific key inside the ConfigMap to use as the value
-
-        - name: COMPANY  # Defines an environment variable
-          valueFrom:
-            configMapKeyRef:  # Fetches the value from a ConfigMap
-              name: print-envars-configmap # Name of the ConfigMap to reference
-              key: COMPANY  # The specific key inside the ConfigMap to use as the value
-
-        - name: GROUP  # Defines an environment variable
-          valueFrom:
-            configMapKeyRef:  # Fetches the value from a ConfigMap
-              name: print-envars-configmap # Name of the ConfigMap to reference
-              key: GROUP  # The specific key inside the ConfigMap to use as the value
-
+        httpGet: # HTTP GET request to check the container's status
+          path: /  # Path to check
+          port: 80  # Port to check
+        initialDelaySeconds: 0  # Initial delay in seconds before checking
+        periodSeconds: 5  # Period in seconds to check the container's status
+        failureThreshold: 3 # Trials b4 K8s declare failure
 
 # ==============================================
 #
