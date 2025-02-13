@@ -6,7 +6,7 @@
 #
 # Created By: Hossam Mahmoud
 # Date: 2025-02-13
-# Filename: Q14_nginx_pod.yml
+# Filename: Q15_nginx-liveness_pod.yml
 # Description: 
 # Version: 1.0.0
 # Copyright (c) 2025 Hossam. All rights reserved.
@@ -20,23 +20,23 @@
 apiVersion: v1  # Specifies the API version for Kubernetes apps
 kind: Pod     # Defines the resource type
 metadata:
-  name: nginx-startup-probe  # Name of the resource type
+  name: nginx-liveness-probe  # Name of the resource type
   labels:
-    app: nginx-startup  # Label for the resource type
+    app: nginx-liveness  # Label for the resource type
   annotations:
-    tracking: "nginx-startup-v1"  # Annotation for tracking purposes
+    tracking: "nginx-liveness-v1"  # Annotation for tracking purposes
 
 spec:  # Pod spec
   containers:
-    - name: nginx-container01 # Name of the container inside the pod
+    - name: nginx-container02 # Name of the container inside the pod
       image: nginx:latest  # Container image used
 
-      startupProbe:
+      livenessProbe:
         httpGet: # HTTP GET request to check the container's status
           path: /  # Path to check
           port: 80  # Port to check
-        initialDelaySeconds: 0  # Initial delay in seconds before checking
-        periodSeconds: 5  # Period in seconds to check the container's status
+        initialDelaySeconds: 3  # Initial delay in seconds before checking
+        periodSeconds: 3  # Period in seconds to check the container's status
         failureThreshold: 3 # Trials b4 K8s declare failure
 
 # ==============================================
