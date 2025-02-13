@@ -20,7 +20,7 @@
 apiVersion: v1  # Specifies the API version for Kubernetes apps
 kind: Pod     # Defines the resource type
 metadata:
-  name: db_pod  # Name of the resource type
+  name: db-pod  # Name of the resource type
   labels:
     app: db  # Label for the resource type
   annotations:
