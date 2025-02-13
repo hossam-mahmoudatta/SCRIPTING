@@ -1,0 +1,59 @@
+# ==============================================
+#
+# ================= FILE START ==================
+#
+# ==============================================
+#
+# Created By: Hossam Mahmoud
+# Date: 2025-02-12
+# Filename: Q07_nginx-iti_deploy.yml
+# Description: 
+# Version: 1.0.0
+# Copyright (c) 2025 Hossam. All rights reserved.
+#
+# ==============================================
+#
+# =========== IMPLEMENTATION START =============
+#
+# ==============================================
+
+apiVersion: apps/v1  # Specifies the API version for Kubernetes apps
+kind: Deployment     # Defines the resource type
+metadata:
+  name: nginx  # Name of the resource
+  namespace: iti
+  labels:
+    app: nginx  # Label for the resource
+  annotations:
+    tracking: "nginx_deployment-v1"  # Annotation for tracking purposes
+
+spec:
+  replicas: 3  # No. of pod replicas to ensure availability and reliability
+  selector:
+    matchLabels:
+      app: nginx  # Label for the resource
+
+  template:  # Defines the pod template for creating replicas
+    metadata:
+      labels:
+        app: nginx  # Labels assigned to the pods for identification
+  
+    spec:
+      containers:
+        - name: nginx-conx  # Name of the container inside the pod
+          image: nginx:latest  # Container image used
+
+# ==============================================
+#
+# ============ IMPLEMENTATION END ==============
+#
+# ==============================================
+#
+# End of File
+# Copyright (c) 2025 Hossam. All rights reserved.
+#
+# ==============================================
+#
+# ================== FILE END ====================
+#
+# ==============================================
