@@ -6,7 +6,7 @@
 #
 # Created By: Hossam Mahmoud
 # Date: 2025-02-13
-# Filename: Q10_yellow_multipod.yml
+# Filename: Q11_red_pod.yml
 # Description: 
 # Version: 1.0.0
 # Copyright (c) 2025 Hossam. All rights reserved.
@@ -20,17 +20,19 @@
 apiVersion: v1  # Specifies the API version for Kubernetes apps
 kind: Pod     # Defines the resource type
 metadata:
-  name: yellow  # Name of the resource type
+  name: red  # Name of the resource type
   labels:
-    app: yellow  # Label for the resource type
+    app: red  # Label for the resource type
   annotations:
-    tracking: "yellow-multipod-v1"  # Annotation for tracking purposes
+    tracking: "red-initpod-v1"  # Annotation for tracking purposes
 
 spec:  # Pod spec
-  containers:
-    - name: lemon  # Name of the container inside the pod
+  initContainers:
+    - name: init-wait  # Name of the container inside the pod
       image: busybox  # Container image used
-    - name: gold  # Name of the container inside the pod
+      command: ["sleep", "20"]
+  containers:
+    - name: redis-con  # Name of the container inside the pod
       image: redis  # Container image used
 
 # ==============================================
