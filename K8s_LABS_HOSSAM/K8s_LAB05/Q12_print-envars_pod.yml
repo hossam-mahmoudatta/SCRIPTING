@@ -1,0 +1,69 @@
+# ==============================================
+#
+# ================= FILE START ==================
+#
+# ==============================================
+#
+# Created By: Hossam Mahmoud
+# Date: 2025-02-13
+# Filename: Q12_print-envars_pod.yml
+# Description: 
+# Version: 1.0.0
+# Copyright (c) 2025 Hossam. All rights reserved.
+#
+# ==============================================
+#
+# =========== IMPLEMENTATION START =============
+#
+# ==============================================
+
+apiVersion: v1  # Specifies the API version for Kubernetes apps
+kind: Pod     # Defines the resource type
+metadata:
+  name: print-envars-greeting  # Name of the resource type
+  labels:
+    app: print  # Label for the resource type
+  annotations:
+    tracking: "print-envars-v1"  # Annotation for tracking purposes
+
+spec:  # Pod spec
+  containers:
+    - name: print-env-container  # Name of the container inside the pod
+      image: bash:latest  # Container image used
+      command: ["sh", "-c"]  # Command to run inside the container
+      args: ["echo \"$(GREETING) $(COMPANY) $(GROUP)\" && sleep 3600"]
+
+      env:
+        - name: GREETING  # Defines an environment variable
+          valueFrom:
+            configMapKeyRef:  # Fetches the value from a ConfigMap
+              name: print-configmap # Name of the ConfigMap to reference
+              key: GREETING  # The specific key inside the ConfigMap to use as the value
+
+        - name: COMPANY  # Defines an environment variable
+          valueFrom:
+            configMapKeyRef:  # Fetches the value from a ConfigMap
+              name: print-configmap # Name of the ConfigMap to reference
+              key: COMPANY  # The specific key inside the ConfigMap to use as the value
+
+        - name: GROUP  # Defines an environment variable
+          valueFrom:
+            configMapKeyRef:  # Fetches the value from a ConfigMap
+              name: print-configmap  # Name of the ConfigMap to reference
+              key: GROUP  # The specific key inside the ConfigMap to use as the value
+
+
+# ==============================================
+#
+# ============ IMPLEMENTATION END ==============
+#
+# ==============================================
+#
+# End of File
+# Copyright (c) 2025 Hossam. All rights reserved.
+#
+# ==============================================
+#
+# ================== FILE END ====================
+#
+# ==============================================
