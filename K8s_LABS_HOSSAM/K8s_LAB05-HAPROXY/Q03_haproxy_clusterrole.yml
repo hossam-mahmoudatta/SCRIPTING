@@ -6,7 +6,7 @@
 #
 # Created By: Hossam Mahmoud
 # Date: 2025-02-15
-# Filename: Q09_pvviewer-role_role.yml
+# Filename: Q03_haproxy_clusterrole.yml
 # Description: 
 # Version: 1.0.0
 # Copyright (c) 2025 Hossam. All rights reserved.
@@ -20,15 +20,30 @@
 apiVersion: rbac.authorization.k8s.io/v1 # Specifies the API version for Kubernetes apps
 kind: ClusterRole     # Defines the resource type
 metadata:
-  name: pvviewer-role  # Name of the resource type
-  namespace: default # Specifies the namespace for the resource
+  name: haproxy-cluster-role-devops  # Name of the resource type
+  namespace: haproxy-controller-devops # Specifies the namespace for the resource
   annotations:
-    tracking: "pv-clusterroles-v1"  # Annotation for tracking purposes
+    tracking: "haproxy-clusterroles-v1"  # Annotation for tracking purposes
 
 rules:
   - apiGroups: [""]
-    resources: ["persistentvolumes"]
-    verbs: ["get", "watch", "list"]
+    resources: # Resources that HAProxy needs access
+      - configmaps
+      - secrets
+      - endpoints
+      - nodes
+      - pods
+      - services
+      - namespaces
+      - events
+      - serviceaccounts
+    verbs:
+      - get
+      - list
+      - watch
+      - create
+      - patch
+      - update
 
 # ==============================================
 #
