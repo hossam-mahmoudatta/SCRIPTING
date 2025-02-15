@@ -25,23 +25,48 @@ metadata:
     tracking: "webserver-pv-v1"  # Annotation for tracking purposes
 
 spec:  # Pod spec
+  volumes:
+  - name: shared-logs  # Volume name
+    emptyDir: {}
+
   containers:
     - image: nginx:latest  # Container image
       name: Nginx-container  # Container name
       command: ["/bin/bash", "-c", "sleep 10000"]  # Command to run inside the container
-      
+
       volumeMounts:
         - mountPath: /var/log/nginx
           name: shared-logs  # Mounts the volume
 
+
     - image: ubuntu:latest  # Container image
       name: sidecar-container  # Container name
-      command: ["sh", "-c", "sleep 10000"]  # Command to run inside the container
-      
+      command:  # Command to run inside the container
+        - "sh"
+        - "-c"
+        - | # Multi-line command
+          while true; do
+            echo "Hello from sidecar container"
+            cat /var/log/nginx/access.log /var/log/nginx/error.log;
+            sleep 30;
+          done
+
       volumeMounts:
         - mountPath: /var/log/nginx
           name: shared-logs  # Mounts the volume
-  
-  volumes:
-  - name: shared-logs  # Volume name
-    emptyDir: {}
+
+
+# ==============================================
+#
+# ============ IMPLEMENTATION END ==============
+#
+# ==============================================
+#
+# End of File
+# Copyright (c) 2025 Hossam. All rights reserved.
+#
+# ==============================================
+#
+# ================== FILE END ====================
+#
+# ==============================================
