@@ -20,17 +20,17 @@
 apiVersion: rbac.authorization.k8s.io/v1 # Specifies the API version for Kubernetes apps
 kind: ClusterRoleBinding     # Defines the resource type
 metadata:
-  name: pvviewer-role-binding  # Name of the resource type
+  name: haproxy-cluster-role-binding-devops  # Name of the resource type
   annotations:
-    tracking: "pv-clusterroles-v1"  # Annotation for tracking purposes
+    tracking: "haproxy-clusterbind-v1"  # Annotation for tracking purposes
 subjects:
   - kind: ServiceAccount # Specifies the type of subject
-    name: pvviewer  # Name of the subject
-    namespace: default # Specifies the namespace for the resource
+    name: haproxy  # Name of the subject
+    namespace: haproxy-controller-devops # Specifies the namespace for the resource
     apiGroup: ""  # Specifies the API group for the resource
 roleRef:
   kind: ClusterRole # Specifies the type of role
-  name: pvviewer-role # Name of the role
+  name: haproxy-cluster-role-devops # Name of the role
   apiGroup: rbac.authorization.k8s.io # Specifies the API group for the role
 
 # ==============================================
