@@ -1,0 +1,38 @@
+# ==============================================
+#
+# ================= FILE START ==================
+#
+# ==============================================
+#
+# Created By: Hossam Mahmoud
+# Date: 2025-02-15
+# Filename: Q06_webapp_pod.yml
+# Description: 
+# Version: 1.0.0
+# Copyright (c) 2025 Hossam. All rights reserved.
+#
+# ==============================================
+#
+# =========== IMPLEMENTATION START =============
+#
+# ==============================================
+
+apiVersion: v1  # Specifies the API version for Kubernetes apps
+kind: Pod     # Defines the resource type
+metadata:
+  name: webapp  # Name of the resource type
+  annotations:
+    tracking: "webapp-pv-v1"  # Annotation for tracking purposes
+
+spec:  # Pod spec
+  containers:
+    - image: nginx:latest  # Container image
+      name: nginx  # Container name
+      volumeMounts:
+        - mountPath: /var/log/nginx
+          name: pv-log  # Mounts the volume
+  
+  volumes:
+  - name: pv-log  # Volume name
+    persistentVolumeClaim:
+      claimName: claim-log-1  # Persistent volume claim name
