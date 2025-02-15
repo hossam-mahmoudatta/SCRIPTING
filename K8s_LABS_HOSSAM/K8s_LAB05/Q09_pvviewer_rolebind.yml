@@ -6,7 +6,7 @@
 #
 # Created By: Hossam Mahmoud
 # Date: 2025-02-15
-# Filename: Q09_pvviewer-role_role.yml
+# Filename: Q09_pvviewer_rolebind.yml
 # Description: 
 # Version: 1.0.0
 # Copyright (c) 2025 Hossam. All rights reserved.
@@ -18,17 +18,20 @@
 # ==============================================
 
 apiVersion: rbac.authorization.k8s.io/v1 # Specifies the API version for Kubernetes apps
-kind: ClusterRole     # Defines the resource type
+kind: ClusterRoleBinding     # Defines the resource type
 metadata:
-  name: pvviewer-role  # Name of the resource type
-  namespace: default # Specifies the namespace for the resource
+  name: pvviewer-role-binding  # Name of the resource type
   annotations:
     tracking: "pv-clusterroles-v1"  # Annotation for tracking purposes
-
-rules:
-  - apiGroups: [""]
-    resources: ["persistentvolumes"]
-    verbs: ["get", "watch", "list"]
+subjects:
+  - kind: ServiceAccount # Specifies the type of subject
+    name: pvviewer  # Name of the subject
+    namespace: default # Specifies the namespace for the resource
+    apiGroup: ""  # Specifies the API group for the resource
+roleRef:
+  kind: ClusterRole # Specifies the type of role
+  name: pvviewer-role # Name of the role
+  apiGroup: rbac.authorization.k8s.io # Specifies the API group for the role
 
 # ==============================================
 #
