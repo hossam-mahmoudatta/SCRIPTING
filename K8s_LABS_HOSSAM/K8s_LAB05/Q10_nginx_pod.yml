@@ -20,18 +20,22 @@
 apiVersion: v1  # Specifies the API version for Kubernetes apps
 kind: Pod     # Defines the resource type
 metadata:
-  name: yellow  # Name of the resource type
-  labels:
-    app: yellow  # Label for the resource type
+  name: nginx-pod  # Name of the resource type
   annotations:
-    tracking: "yellow-multipod-v1"  # Annotation for tracking purposes
+    tracking: "nginx-vol-pod-v1"  # Annotation for tracking purposes
 
 spec:  # Pod spec
   containers:
-    - name: lemon  # Name of the container inside the pod
-      image: busybox  # Container image used
-    - name: gold  # Name of the container inside the pod
-      image: redis  # Container image used
+    - image: nginx  # Container image used
+      name: nginx:latest  # Name of the container inside the pod
+      volumeMounts:
+      - name: nginx-vol  # Mounts the volume to the container
+        mountPath: /etc/nginx/nginx.conf  # Path where the volume will be mounted
+
+  volumes:
+    - name: nginx-vol # Name of the volume
+      configMap:  # Specifies the type of volume
+        name: nginx-config
 
 # ==============================================
 #
