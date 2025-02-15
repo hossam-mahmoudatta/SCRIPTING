@@ -26,8 +26,8 @@ metadata:
 
 spec:  # Pod spec
   containers:
-    - image: nginx  # Container image used
-      name: nginx:latest  # Name of the container inside the pod
+    - image: nginx:latest  # Container image used
+      name: nginx  # Name of the container inside the pod
       volumeMounts:
       - name: nginx-vol  # Mounts the volume to the container
         mountPath: /etc/nginx/nginx.conf  # Path where the volume will be mounted
