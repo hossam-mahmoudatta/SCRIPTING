@@ -6,7 +6,7 @@
 #
 # Created By: Hossam Mahmoud
 # Date: 2025-02-15
-# Filename: Q07_volshare_pod.yml
+# Filename: Q08_webserver_pod.yml
 # Description: 
 # Version: 1.0.0
 # Copyright (c) 2025 Hossam. All rights reserved.
@@ -20,28 +20,28 @@
 apiVersion: v1  # Specifies the API version for Kubernetes apps
 kind: Pod     # Defines the resource type
 metadata:
-  name: volume-share-datacenter  # Name of the resource type
+  name: webserver  # Name of the resource type
   annotations:
-    tracking: "datacenter-pv-v1"  # Annotation for tracking purposes
+    tracking: "webserver-pv-v1"  # Annotation for tracking purposes
 
 spec:  # Pod spec
   containers:
-    - image: centos:latest  # Container image
-      name: volume-container-datacenter-1  # Container name
+    - image: nginx:latest  # Container image
+      name: Nginx-container  # Container name
       command: ["/bin/bash", "-c", "sleep 10000"]  # Command to run inside the container
       
       volumeMounts:
-        - mountPath: /tmp/news
-          name: volume-share  # Mounts the volume
+        - mountPath: /var/log/nginx
+          name: shared-logs  # Mounts the volume
 
-    - image: centos:latest  # Container image
-      name: volume-container-datacenter-2  # Container name
-      command: ["/bin/bash", "-c", "sleep 10000"]  # Command to run inside the container
+    - image: ubuntu:latest  # Container image
+      name: sidecar-container  # Container name
+      command: ["sh", "-c", "sleep 10000"]  # Command to run inside the container
       
       volumeMounts:
-        - mountPath: /tmp/cluster
-          name: volume-share  # Mounts the volume
+        - mountPath: /var/log/nginx
+          name: shared-logs  # Mounts the volume
   
   volumes:
-  - name: volume-share  # Volume name
+  - name: shared-logs  # Volume name
     emptyDir: {}
