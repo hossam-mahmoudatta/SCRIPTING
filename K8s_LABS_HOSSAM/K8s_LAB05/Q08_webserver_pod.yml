@@ -1,0 +1,47 @@
+# ==============================================
+#
+# ================= FILE START ==================
+#
+# ==============================================
+#
+# Created By: Hossam Mahmoud
+# Date: 2025-02-15
+# Filename: Q07_volshare_pod.yml
+# Description: 
+# Version: 1.0.0
+# Copyright (c) 2025 Hossam. All rights reserved.
+#
+# ==============================================
+#
+# =========== IMPLEMENTATION START =============
+#
+# ==============================================
+
+apiVersion: v1  # Specifies the API version for Kubernetes apps
+kind: Pod     # Defines the resource type
+metadata:
+  name: volume-share-datacenter  # Name of the resource type
+  annotations:
+    tracking: "datacenter-pv-v1"  # Annotation for tracking purposes
+
+spec:  # Pod spec
+  containers:
+    - image: centos:latest  # Container image
+      name: volume-container-datacenter-1  # Container name
+      command: ["/bin/bash", "-c", "sleep 10000"]  # Command to run inside the container
+      
+      volumeMounts:
+        - mountPath: /tmp/news
+          name: volume-share  # Mounts the volume
+
+    - image: centos:latest  # Container image
+      name: volume-container-datacenter-2  # Container name
+      command: ["/bin/bash", "-c", "sleep 10000"]  # Command to run inside the container
+      
+      volumeMounts:
+        - mountPath: /tmp/cluster
+          name: volume-share  # Mounts the volume
+  
+  volumes:
+  - name: volume-share  # Volume name
+    emptyDir: {}
