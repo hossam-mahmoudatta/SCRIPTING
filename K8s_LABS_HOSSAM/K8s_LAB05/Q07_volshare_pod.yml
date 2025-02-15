@@ -20,19 +20,20 @@
 apiVersion: v1  # Specifies the API version for Kubernetes apps
 kind: Pod     # Defines the resource type
 metadata:
-  name: webapp  # Name of the resource type
+  name: volume-share-datacenter  # Name of the resource type
   annotations:
-    tracking: "webapp-pv-v1"  # Annotation for tracking purposes
+    tracking: "datacenter-pv-v1"  # Annotation for tracking purposes
 
 spec:  # Pod spec
   containers:
-    - image: nginx:latest  # Container image
-      name: nginx  # Container name
+    - image: centos:latest  # Container image
+      name: volume-container-datacenter-1  # Container name
+      command: ["/bin/bash", "-c", "sleep 10000"]  # Command to run inside the container
+      
       volumeMounts:
-        - mountPath: /var/log/nginx
-          name: pv-log  # Mounts the volume
+        - mountPath: /tmp/news
+          name: volume-share  # Mounts the volume
   
   volumes:
-  - name: pv-log  # Volume name
-    persistentVolumeClaim:
-      claimName: claim-log-1  # Persistent volume claim name
+  - name: volume-share  # Volume name
+    emptyDir: {}
