@@ -5,8 +5,8 @@
 # ==============================================
 #
 # Created By: Hossam Mahmoud
-# Date: 2025-02-13
-# Filename: Q02_webapp_configmap.yml
+# Date: 2025-02-15
+# Filename: Q04_pvlog_pv.yml
 # Description: 
 # Version: 1.0.0
 # Copyright (c) 2025 Hossam. All rights reserved.
@@ -18,16 +18,18 @@
 # ==============================================
 
 apiVersion: v1  # Specifies the API version for Kubernetes apps
-kind: ConfigMap     # Defines the resource type
+kind: PersistentVolume     # Defines the resource type
 metadata:
-  name: webapp-config-map  # Name of the resource
-  labels:
-    app: webapp  # Label for the resource
-  annotations:
-    tracking: "webapp-configmap-v1"  # Annotation for tracking purposes
+  name: pv-log  # Name of the resource
 
-data:
-  APP_COLOR: darkblue
+spec:
+  storageClassName: ""
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/pv/log"
 
 # ==============================================
 #
