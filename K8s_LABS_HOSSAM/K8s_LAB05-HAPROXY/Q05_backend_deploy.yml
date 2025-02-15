@@ -17,7 +17,7 @@
 #
 # ==============================================
 
-apiVersion: v1  # Specifies the API version for Kubernetes apps
+apiVersion: apps/v1  # Specifies the API version for Kubernetes apps
 kind: Deployment     # Defines the resource type
 metadata:
   name: backend-deployment-devops  # Name of the resource type
@@ -28,17 +28,17 @@ metadata:
     tracking: "backend-deploy-v1"  # Annotation for tracking purposes
 
 spec:  # Pod spec
-replicas: 1
-selector: # Selector for the pods
-  matchLabels: # Labels to match the pods
-    app: backend 
-  template: # Template for the pods
-    metadata: 
-      labels: 
-        app: backend  
-  spec:
-    containers:
-      - image: gcr.io/google_containers/defaultbackend:1.0  # Container image
-        name: backend-container-devops  # Container name
-        ports:
-          - containerPort: 8080
+  replicas: 1
+  selector: # Selector for the pods
+    matchLabels: # Labels to match the pods
+      app: backend 
+    template: # Template for the pods
+      metadata: 
+        labels: 
+          app: backend  
+    spec:
+      containers:
+        - image: gcr.io/google_containers/defaultbackend:1.0  # Container image
+          name: backend-container-devops  # Container name
+          ports:
+            - containerPort: 8080
