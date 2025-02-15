@@ -6,7 +6,7 @@
 #
 # Created By: Hossam Mahmoud
 # Date: 2025-02-15
-# Filename: Q05_claimlog_pvc.yml
+# Filename: Q02_haproxy_svc.yml
 # Description: 
 # Version: 1.0.0
 # Copyright (c) 2025 Hossam. All rights reserved.
@@ -18,17 +18,12 @@
 # ==============================================
 
 apiVersion: v1  # Specifies the API version for Kubernetes apps
-kind: PersistentVolumeClaim     # Defines the resource type
+kind: ServiceAccount     # Defines the resource type
 metadata:
-  name: claim-log-1  # Name of the resource
-
-spec:
-  storageClassName: ""
-  resources:
-    requests:
-      storage: 50Mi
-  accessModes:
-    - ReadWriteMany
+  name: haproxy-service-account-devops  # Name of the resource type
+  namespace: haproxy-controller-devops # Specifies the namespace for the resource
+  annotations:
+    tracking: "haproxy-svacc-v1"  # Annotation for tracking purposes
 
 # ==============================================
 #
