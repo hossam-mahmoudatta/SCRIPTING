@@ -31,8 +31,7 @@ spec:  # Pod spec
 
   containers:
     - image: nginx:latest  # Container image
-      name: Nginx-container  # Container name
-      command: ["/bin/bash", "-c", "sleep 10000"]  # Command to run inside the container
+      name: nginx-container  # Container name
 
       volumeMounts:
         - mountPath: /var/log/nginx
