@@ -33,6 +33,14 @@ spec:  # Pod spec
       volumeMounts:
         - mountPath: /tmp/news
           name: volume-share  # Mounts the volume
+
+    - image: centos:latest  # Container image
+      name: volume-container-datacenter-2  # Container name
+      command: ["/bin/bash", "-c", "sleep 10000"]  # Command to run inside the container
+      
+      volumeMounts:
+        - mountPath: /tmp/cluster
+          name: volume-share  # Mounts the volume
   
   volumes:
   - name: volume-share  # Volume name
