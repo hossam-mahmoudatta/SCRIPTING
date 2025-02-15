@@ -6,7 +6,7 @@
 #
 # Created By: Hossam Mahmoud
 # Date: 2025-02-15
-# Filename: Q02_haproxy_svc.yml
+# Filename: Q06_backend_svc.yml
 # Description: 
 # Version: 1.0.0
 # Copyright (c) 2025 Hossam. All rights reserved.
@@ -18,12 +18,22 @@
 # ==============================================
 
 apiVersion: v1  # Specifies the API version for Kubernetes apps
-kind: ServiceAccount     # Defines the resource type
+kind: Service     # Defines the resource type
 metadata:
-  name: haproxy-service-account-devops  # Name of the resource type
+  name: service-backend-devops  # Name of the resource type
   namespace: haproxy-controller-devops # Specifies the namespace for the resource
   annotations:
-    tracking: "haproxy-svacc-v1"  # Annotation for tracking purposes
+    tracking: "backend-svc-v1"  # Annotation for tracking purposes
+
+spec:
+  selector:
+    app: backend-devops  # Matches the label in your deployment
+  ports:
+    - name: port-backend
+      protocol: TCP
+      port: 80  # External port
+      targetPort: 8080  # Matches containerPort in the deployment
+  type: ClusterIP  # Change if you need NodePort or LoadBalancer
 
 # ==============================================
 #
