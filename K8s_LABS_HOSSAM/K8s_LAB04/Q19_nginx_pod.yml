@@ -22,16 +22,23 @@
 apiVersion: v1  # Specifies the API version for Kubernetes apps
 kind: Pod     # Defines the resource type
 metadata:
-  name: nginx-pod07  # Name of the resource type
+  name: node-pod  # Name of the resource type
   labels:
-    app: nginx  # Label for the resource type
+    app: node  # Label for the resource type
   annotations:
     tracking: "nginx-pod-v1"  # Annotation for tracking purposes
 
 spec:  # Pod spec
   containers:
-    - name: nginx-con07 # Name of the container inside the pod
+    - name: node-con # Name of the container inside the pod
       image: nginx # Container image used
+
+      readinessProbe:
+      httpGet:
+        path: /health
+        port: 80
+      initialDelaySeconds: 5  # Wait 5 seconds before the first check
+      periodSeconds: 10  # Check every 10 seconds
 
 # ==============================================
 #
