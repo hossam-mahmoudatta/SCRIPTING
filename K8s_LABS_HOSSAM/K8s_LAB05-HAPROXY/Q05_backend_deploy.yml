@@ -32,10 +32,10 @@ spec:  # Pod spec
   selector: # Selector for the pods
     matchLabels: # Labels to match the pods
       app: backend 
-    template: # Template for the pods
-      metadata: 
-        labels: 
-          app: backend  
+  template: # Template for the pods
+    metadata: 
+      labels: 
+        app: backend  
     spec:
       containers:
         - image: gcr.io/google_containers/defaultbackend:1.0  # Container image
