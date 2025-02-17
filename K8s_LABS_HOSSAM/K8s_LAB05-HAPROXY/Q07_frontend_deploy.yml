@@ -31,11 +31,11 @@ spec:  # Pod spec
   replicas: 1
   selector: # Selector for the pods
     matchLabels: # Labels to match the pods
-      app: haproxy-ingress
+      run: haproxy-ingress
   template: # Template for the pods
     metadata: 
       labels: 
-        app: haproxy-ingress  
+        run: haproxy-ingress  
 
     spec:
       serviceAccountName: haproxy-service-account-devops
