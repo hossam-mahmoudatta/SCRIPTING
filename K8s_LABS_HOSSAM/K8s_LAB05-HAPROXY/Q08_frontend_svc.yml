@@ -5,8 +5,8 @@
 # ==============================================
 #
 # Created By: Hossam Mahmoud
-# Date: 2025-02-15
-# Filename: Q07_frontend_deploy.yml
+# Date: 2025-02-17
+# Filename: Q08_frontend_svc.yml
 # Description: 
 # Version: 1.0.0
 # Copyright (c) 2025 Hossam. All rights reserved.
@@ -17,62 +17,38 @@
 #
 # ==============================================
 
-apiVersion: apps/v1  # Specifies the API version for Kubernetes apps
-kind: Deployment     # Defines the resource type
+apiVersion: v1  # Specifies the API version for Kubernetes apps
+kind: Service     # Defines the resource type
 metadata:
-  name: haproxy-ingress-devops  # Name of the resource type
+  name: ingress-service-devops  # Name of the resource type
   namespace: haproxy-controller-devops
-  labels: # Labels for the resource type
-    run: haproxy-ingress
   annotations:
-    tracking: "frontend-deploy-v1"  # Annotation for tracking purposes
+    tracking: "frontend-svc-v1"  # Annotation for tracking purposes
 
 spec:  # Pod spec
-  replicas: 1
-  selector: # Selector for the pods
-    matchLabels: # Labels to match the pods
-      run: haproxy-ingress
-  template: # Template for the pods
-    metadata: 
-      labels: 
-        run: haproxy-ingress  
+  type: NodePort
+  selector:
+    run: haproxy-ingress
+  
+  ports:
+    - name: http 
+      port: 80
+      targetPort: 80
+      nodePort: 32456
+      protocol: TCP
+# ==============================================
+    - name: https
+      port: 443
+      targetPort: 443
+      nodePort: 32567
+      protocol: TCP
+# ==============================================
+    - name: stat 
+      port: 1024
+      targetPort: 1024
+      nodePort: 32678
+      protocol: TCP
 
-    spec:
-      serviceAccountName: haproxy-service-account-devops
-      containers:
-        - image: haproxytech/kubernetes-ingress # Container image
-          name: ingress-container-devops  # Container name
-          args:
-            - "--default-backend-service=haproxy-controller-devops/service-backend-devops"
-          resources: # Resources for the container
-            requests: 
-              cpu: "500m" # CPU request
-              memory: "50Mi" # Memory request
-          
-          livenessProbe:
-            httpGet:
-              path: /health  # The container will be checked for health
-              port: 1024      # The probe will use this port to check if the container is alive
-          
-          ports:
-            - name: http 
-              containerPort: 80
-            - name: https 
-              containerPort: 443 
-            - name: stat
-              containerPort: 1024 # This port is used for HAProxy stats monitoring
-
-          env:
-            - name: TZ
-              value: "Etc/UTC"  # Sets the timezone to UTC inside the container
-            - name: POD_NAME
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.name  # Retrieves the namespace where the pod is running
-            - name: POD_NAMESPACE
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.namespace  # Retrieves the namespace where the pod is running
 # ==============================================
 #
 # ============ IMPLEMENTATION END ==============
