@@ -31,17 +31,44 @@ spec:  # Pod spec
   replicas: 1
   selector: # Selector for the pods
     matchLabels: # Labels to match the pods
-      app: frontend
+      app: haproxy-ingress
   template: # Template for the pods
     metadata: 
       labels: 
-        app: backend  
+        app: haproxy-ingress  
+
     spec:
+      serviceAccountName: haproxy-service-account-devops
       containers:
-        - image: gcr.io/google_containers/defaultbackend:1.0  # Container image
+        - image: haproxytech/kubernetes-ingress # Container image
           name: ingress-container-devops  # Container name
+          args:
+            - "--default-backend-service=haproxy-controller-devops/service-backend-devops"
+          resources: # Resources for the container
+            requests: 
+              cpu: "500m" # CPU request
+              memory: "50Mi" # Memory request
+          
+          livenessProbe:
+            httpGet:
+              path: /health  # The container will be checked for health
+              port: 1024      # The probe will use this port to check if the container is alive
+          
           ports:
-            - containerPort: 8080
+            - name: http 
+              containerPort: 80
+            - name: https 
+              containerPort: 443 
+            - name: stat
+              containerPort: 1024 # This port is used for HAProxy stats monitoring
+
+          env:
+            - name: TZ
+              value: "Etc/UTC"  # Sets the timezone to UTC inside the container
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace  # Retrieves the namespace where the pod is running
 
 # ==============================================
 #
