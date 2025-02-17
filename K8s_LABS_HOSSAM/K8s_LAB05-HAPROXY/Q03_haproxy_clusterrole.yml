@@ -26,7 +26,7 @@ metadata:
     tracking: "haproxy-clusterroles-v1"  # Annotation for tracking purposes
 
 rules:
-  - apiGroups: [""]
+  - apiGroups: ["", "networking.k8s.io", "apiextensions.k8s.io", "discovery.k8s.io"]
     resources: # Resources that HAProxy needs access
       - configmaps
       - secrets
@@ -37,6 +37,10 @@ rules:
       - namespaces
       - events
       - serviceaccounts
+      - ingresses
+      - ingressclasses
+      - endpointslices
+      - customresourcedefinitions
     verbs:
       - get
       - list
