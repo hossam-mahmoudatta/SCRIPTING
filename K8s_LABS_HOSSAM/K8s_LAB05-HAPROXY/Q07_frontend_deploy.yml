@@ -68,8 +68,11 @@ spec:  # Pod spec
             - name: POD_NAME
               valueFrom:
                 fieldRef:
+                  fieldPath: metadata.name  # Retrieves the namespace where the pod is running
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
                   fieldPath: metadata.namespace  # Retrieves the namespace where the pod is running
-
 # ==============================================
 #
 # ============ IMPLEMENTATION END ==============
