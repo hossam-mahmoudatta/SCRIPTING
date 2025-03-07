@@ -1,0 +1,32 @@
+import boto3
+import base64
+
+# Initialize S3 client
+s3 = boto3.client("s3")
+
+# Define S3 bucket name
+bucket_name = "hossam-destinationbucket"
+
+def lambda_handler(event, context):
+    
+    # Lambda function to upload a file received from an API request to S3.
+    try:
+        # Extract the file name and content from the event
+        file_name = event["queryStringParameters"]["file_name"]  # Get filename from request
+        file_content = base64.b64decode(event["body"])  # Decode the file content
+        
+        # Upload the file to S3
+        s3.put_object(Bucket=bucket_name, Key=file_name, Body=file_content)
+
+        print(f"File successfully uploaded to {bucket_name}/{file_name}")
+        
+        return {
+            "statusCode": 200,
+            "body": f"File uploaded successfully to {bucket_name}/{file_name}"
+        }
+    except Exception as e:
+        print(f"Error: {e}")
+        return {
+            "statusCode": 500,
+            "body": f"Error: {str(e)}"
+        }
