@@ -4,31 +4,14 @@ import json
 # Initialize S3 client
 s3 = boto3.client("s3")
 dynamodb = boto3.resource("dynamodb")
-table = dynamodb.Table()
-
-# Define source and destination bucket names
-SOURCE_BUCKET = "hossam-sourcebucket"
-DESTINATION_BUCKET = "hossam-destinationbucket"
+table = dynamodb.Table("dynamoDB-HosaLambda")
 
 def lambda_handler(event, context):
-    try:
-        # Get file name from request
-        file_name = event["queryStringParameters"]["file_name"]
+    for record in event["Records"]:
+        bucket = record["s3"]["bucket"]["name"]
+        file_name = record["s3"]["object"]["key"]
         
-        # Copy file from source bucket to destination bucket
-        copy_source = {'Bucket': SOURCE_BUCKET, 'Key': file_name}
-        s3.copy_object(Bucket=DESTINATION_BUCKET, Key=file_name, CopySource=copy_source)
-
-        print(f"File '{file_name}' copied from {SOURCE_BUCKET} to {DESTINATION_BUCKET}")
-
-        return {
-            "statusCode": 200,
-            "body": f"File '{file_name}' successfully copied to {DESTINATION_BUCKET}"
-        }
-
-    except Exception as e:
-        print(f"Error: {e}")
-        return {
-            "statusCode": 500,
-            "body": f"Error: {str(e)}"
-        }
+        table.put_item(Item={"file_name": file_name, "bucket": bucket})
+        print(f"File {file_name} added to DynamoDB from {bucket}")
+    
+    return {"StatusCode": 200, "body": json.dumps("Success")}
