@@ -3,11 +3,15 @@ import json
 
 # Initialize S3 client
 s3 = boto3.client("s3")
-dynamodb = boto3.resource("dynamodb")
-table = dynamodb.Table("dynamoDB-HosaLambda")
+dynamodb = boto3.resource("dynamodb").Table("dynamoDB-HosaLambda")
 destination_bucket = "hossam-destinationbucket" 
 
 def lambda_handler(event, context):
+    print("Received event:", json.dumps(event, indent=2))  # Debugging line
+
+    if "Records" not in event:
+        return {"statusCode": 400, "body": json.dumps("Invalid event format")}
+    
     for record in event["Records"]:
         source_bucket = record["s3"]["bucket"]["name"]
         file_name = record["s3"]["object"]["key"]
@@ -19,7 +23,7 @@ def lambda_handler(event, context):
             CopySource= {"Bucket": source_bucket, "Key": file_name},
         )
         
-        table.put_item(
+        dynamodb.put_item(
             Item = {
                 "file_name": file_name,
                 "source_bucket": source_bucket,
